@@ -1,6 +1,6 @@
 .env
 .venv
-.idea
+.idea/
 .vscode
 /shelf/
 /workspace.xml
