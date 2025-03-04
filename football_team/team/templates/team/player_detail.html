@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Основное фото игрока -->
+        <div class="col-md-4">
+            <div class="card">
+                {% if player.main_photo %}
+                <img src="{{ player.main_photo.url }}" alt="{{ player.name }}" class="card-img-top">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center">
+                    <img src="{% static 'img/default_image.jpg' %}" alt="" width="280">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Информация об игроке -->
+        <div class="col-md-8">
+            <h1>{{ player.first_name }} {{ player.last_name }}</h1>
+            <ul class="list-group">
+                <li class="list-group-item">Дата рождения: {{ player.date_of_birth }}</li>
+                <li class="list-group-item">Амплуа: {{ player.get_position_display }}</li>
+                <li class="list-group-item">Команда: {{ player.team.name }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Дополнительные фото игрока -->
+    <div class="row mt-5">
+        <h2 class="text-center">Дополнительные фото</h2>
+        {% for photo in additional_photos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ photo.image.url }}" alt="{{ photo.description }}" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text">{{ photo.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">Дополнительных фото нет.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Видео игрока -->
+    <div class="row mt-5">
+        <h2 class="text-center">Видео</h2>
+        {% for video in additional_videos %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <video controls class="w-100">
+                    <source src="{{ video.video.url }}" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+                <div class="card-body">
+                    <p class="card-text">{{ video.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">Видео отсутствуют.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

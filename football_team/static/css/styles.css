@@ -1,0 +1,329 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #bad5f5;
+    color: #333;
+}
+
+.navbar {
+    background-color: #0457D9; /* Цвет верхней панели */
+}
+
+.navbar-brand, .nav-link {
+    color: #fff !important;
+}
+
+.team-photo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.player-card {
+    margin-bottom: 20px;
+}
+
+.coach-card {
+    margin-bottom: 20px;
+}
+
+.slick-slide {
+    padding: 0 10px;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: #000;
+}
+
+/* Отступ сверху для слайдера */
+#main-slider {
+    margin-top: 20px; /* Отступ 20px от верхней панели */
+}
+
+.footer {
+    background-color: #0457D9;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.carousel-item img, .carousel-item video {
+    width: 100%;
+    height: 400px; /* Фиксированная высота */
+    object-fit: cover; /* Кадрирование изображения */
+}
+
+.carousel-item {
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item img, .carousel-item video {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для изображений */
+    border-radius: 10px; /* Скругленные углы */
+}
+
+@media (max-width: 768px) {
+    .carousel-item img, .carousel-item video {
+        height: 300px; /* Уменьшенная высота для мобильных устройств */
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item img, .carousel-item video {
+        height: 200px; /* Еще меньшая высота для маленьких экранов */
+    }
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.fa-3x {
+    color: #d32f2f; /* Красный цвет для иконок */
+}
+
+.text-muted {
+    font-size: 0.9rem;
+}
+/* Стили для статистики */
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto; /* Горизонтальный скролл, если статистика не помещается */
+    padding-bottom: 10px; /* Отступ для скролла */
+}
+
+.stats-container .card {
+    flex: 1 1 150px; /* Минимальная ширина карточки */
+    margin: 0 5px; /* Отступы между карточками */
+    text-align: center;
+}
+
+.stats-container .card-body {
+    padding: 10px;
+}
+
+.stats-container .fa-3x {
+    font-size: 2em; /* Уменьшенный размер иконок */
+}
+
+.stats-container h3 {
+    font-size: 1.2em; /* Уменьшенный размер заголовка */
+    margin: 5px 0;
+}
+
+.stats-container p {
+    font-size: 0.8em; /* Уменьшенный размер текста */
+    margin: 0;
+}
+
+/* Стили для сетки игроков */
+.players-grid {
+    display: grid;
+    gap: 10px; /* Отступы между карточками */
+    padding: 10px;
+}
+
+/* Настройки для ПК (5 карточек в ряду) */
+@media (min-width: 992px) {
+    .players-grid {
+        grid-template-columns: repeat(5, 1fr); /* 5 колонок */
+    }
+}
+
+/* Настройки для планшетов (3 карточки в ряду) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .players-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    }
+}
+
+/* Настройки для мобильных устройств (2 карточки в ряду) */
+@media (max-width: 767px) {
+    .players-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+    }
+}
+
+/* Стили для карточек игроков */
+.player-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.player-card:hover {
+    transform: translateY(-5px);
+}
+
+.player-card img {
+    width: 100%;
+    height: 200px; /* Фиксированная высота изображения */
+    object-fit: cover; /* Кадрирование изображения */
+}
+
+.player-card .card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.player-card .card-title {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.player-card .card-text {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.player-card .btn {
+    width: 100%;
+}
+
+/* Стили для сетки тренеров */
+.coaches-grid {
+    display: grid;
+    gap: 20px; /* Отступы между карточками */
+    padding: 10px;
+}
+
+/* Настройки для ПК (5 карточки в ряду) */
+@media (min-width: 992px) {
+    .coaches-grid {
+        grid-template-columns: repeat(5, 1fr); /* 5 колонки */
+    }
+}
+
+/* Настройки для планшетов (3 карточки в ряду) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .coaches-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    }
+}
+
+/* Настройки для мобильных устройств (2 карточка в ряду) */
+@media (max-width: 767px) {
+    .coaches-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонка */
+    }
+}
+
+/* Стили для карточек тренеров */
+.coach-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s; /* Плавные переходы */
+}
+
+.coach-card:hover {
+    transform: translateY(-5px); /* Анимация при наведении */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.coach-card img {
+    width: 100%;
+    height: 300px; /* Фиксированная высота изображения, как у игроков */
+    object-fit: cover; /* Кадрирование изображения */
+}
+
+.coach-card .card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.coach-card .card-title {
+    font-size: 0.8em; /* Размер заголовка, как у игроков */
+}
+
+.coach-card .card-text {
+    font-size: 0.9em; /* Размер текста, как у игроков */
+    margin-bottom: 10px;
+}
+
+
+/* Стили для иконок социальных сетей */
+.footer-icons {
+    display: flex;
+    gap: 15px; /* Отступы между иконками */
+    justify-content: center; /* Выравнивание по центру */
+}
+
+.footer-icons a {
+    color: #fff; /* Белый цвет иконок */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+}
+
+.footer-icons a:hover {
+    color: #d32f2f; /* Красный цвет при наведении */
+}
+
+.footer-icons i {
+    font-size: 24px; /* Размер иконок */
+}
+
+/* Увеличение размера иконок на мобильных устройствах */
+@media (max-width: 767px) {
+    .footer-icons i {
+        font-size: 40px; /* Увеличенный размер иконок */
+    }
+}
+
+/* Стили для карточек-ссылок */
+.player-card-link {
+    text-decoration: none; /* Убираем подчеркивание ссылки */
+    color: inherit; /* Наследуем цвет текста */
+    display: block; /* Ссылка занимает всю область карточки */
+}
+
+.player-card-link:hover .player-card {
+    transform: translateY(-5px); /* Анимация при наведении */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.player-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s; /* Плавные переходы */
+}
+
+.player-card img {
+    width: 100%;
+    height: 300px; /* Фиксированная высота изображения */
+    object-fit: cover; /* Кадрирование изображения */
+}
+
+.player-card .card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.player-card .card-title {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.player-card .card-text {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
