@@ -15,16 +15,6 @@ class Migration(migrations.Migration):
             options={'verbose_name': 'Командные видео', 'verbose_name_plural': 'Командные видео'},
         ),
         migrations.AlterField(
-            model_name='player',
-            name='additional_photos',
-            field=models.ManyToManyField(blank=True, null=True, related_name='players', to='team.photo', verbose_name='Дополнительные фото'),
-        ),
-        migrations.AlterField(
-            model_name='player',
-            name='additional_videos',
-            field=models.ManyToManyField(blank=True, null=True, related_name='players', to='team.video', verbose_name='Дополнительные видео'),
-        ),
-        migrations.AlterField(
             model_name='team',
             name='photos',
             field=models.ManyToManyField(blank=True, null=True, related_name='teams', to='team.teamphoto'),

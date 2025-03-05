@@ -9,8 +9,8 @@ class Team(models.Model):
     matches_won = models.IntegerField(default=0, verbose_name="Победы")
     matches_drawn = models.IntegerField(default=0, verbose_name="Ничьи")
     matches_lost = models.IntegerField(default=0, verbose_name="Поражения")
-    photos = models.ManyToManyField('TeamPhoto', blank=True, related_name='teams')
-    videos = models.ManyToManyField('TeamVideo', blank=True, related_name='teams')
+    # photos = models.ManyToManyField('TeamPhoto', blank=True, related_name='teams')
+    # videos = models.ManyToManyField('TeamVideo', blank=True, related_name='teams')
 
     class Meta:
         verbose_name = "Команда"
@@ -23,6 +23,7 @@ class Team(models.Model):
 class TeamPhoto(models.Model):
     image = models.ImageField(upload_to='team_photos/', verbose_name="Фото команды")
     description = models.TextField(blank=True, null=True, verbose_name="Описание фото")
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_photo', verbose_name="Команда")
 
     class Meta:
         verbose_name = "Командные фото"
@@ -35,6 +36,7 @@ class TeamPhoto(models.Model):
 class TeamVideo(models.Model):
     video = models.FileField(upload_to='videos/', verbose_name="Командные видео")
     description = models.TextField(blank=True, null=True, verbose_name="Описание видео")
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=1, related_name='team_video', verbose_name="Команда")
 
     class Meta:
         verbose_name = "Командные видео"

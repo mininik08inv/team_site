@@ -74,7 +74,6 @@ class Migration(migrations.Migration):
                 ('main_photo', models.ImageField(upload_to='player_photos/', verbose_name='Основное фото')),
                 ('position', models.CharField(choices=[('GK', 'Вратарь'), ('DF', 'Защитник'), ('MF', 'Полузащитник'), ('FW', 'Нападающий')], max_length=2, verbose_name='Амплуа')),
                 ('last_modified', models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')),
-                ('additional_photos', models.ManyToManyField(related_name='players', to='team.photo', verbose_name='Дополнительные фото')),
                 ('team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='players', to='team.team', verbose_name='Команда')),
             ],
             options={
@@ -125,10 +124,5 @@ class Migration(migrations.Migration):
                 'verbose_name': 'Видео',
                 'verbose_name_plural': 'Видео',
             },
-        ),
-        migrations.AddField(
-            model_name='player',
-            name='additional_videos',
-            field=models.ManyToManyField(related_name='players', to='team.video', verbose_name='Дополнительные видео'),
         ),
     ]

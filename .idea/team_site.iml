@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/football_team" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/football_team/media" />
+      <excludeFolder url="file://$MODULE_DIR$/football_team/team/migrations/dump" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.12 (team_site)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

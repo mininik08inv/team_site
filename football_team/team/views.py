@@ -18,8 +18,8 @@ def team_detail(request):
     coaches = team.coach_set.all()
 
     # Получаем все фото и видео команды
-    team_photos = team.photos.all()  # Список всех фото команды
-    team_videos = team.videos.all()  # Список всех видео команды
+    team_photos = team.team_photo.all()  # Список всех фото команды
+    team_videos = team.team_video.all()  # Список всех видео команды
 
     print(team_photos, team_videos)
 
