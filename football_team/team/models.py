@@ -31,6 +31,7 @@ class TeamPhoto(models.Model):
     def __str__(self):
         return self.image.name
 
+
 class TeamVideo(models.Model):
     video = models.FileField(upload_to='videos/', verbose_name="Командные видео")
     description = models.TextField(blank=True, null=True, verbose_name="Описание видео")
@@ -96,13 +97,15 @@ class Video(models.Model):
     def __str__(self):
         return self.video.name
 
+
 class Coach(models.Model):
-    first_name = models.CharField(max_length=100, verbose_name="Имя")
     last_name = models.CharField(max_length=100, verbose_name="Фамилия")
+    first_name = models.CharField(max_length=100, verbose_name="Имя")
     patronymic = models.CharField(max_length=100, blank=True, verbose_name="Отчество")
     photo = models.ImageField(upload_to='coach_photos/', blank=True, verbose_name="Фото тренера")
     date_of_birth = models.DateField(blank=True, null=True, verbose_name="Дата рождения")
-    start_of_coaching_career = models.DateField(blank=True, null=True, verbose_name="Дата начала тренерской деятельности")
+    start_of_coaching_career = models.DateField(blank=True, null=True,
+                                                verbose_name="Дата начала тренерской деятельности")
     team = models.ForeignKey('Team', on_delete=models.CASCADE, verbose_name="Команда")
 
     class Meta:
