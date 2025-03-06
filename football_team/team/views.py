@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Team, Player, Coach
+from .models import Team, Player, Coach, Match, Achievement
 
 
 def team_detail(request):
@@ -32,6 +32,16 @@ def team_detail(request):
     })
 
 
+def achievements(request):
+    achievements = Achievement.objects.all()
+    victories = len(Achievement.objects.filter(final_place=1))
+    second_place = len(Achievement.objects.filter(final_place=2))
+    third_place = len(Achievement.objects.filter(final_place=3))
+    return render(request, 'team/achievements.html', {'achievements': achievements,
+                                                      'victories': victories, 'second_place': second_place,
+                                                      'third_place': third_place})
+
+
 def player_detail(request, player_id):
     player = get_object_or_404(Player, id=player_id)
     main_photo = player.main_photo  # Основное фото игрока
@@ -44,3 +54,8 @@ def player_detail(request, player_id):
         'additional_photos': additional_photos,
         'additional_videos': additional_videos,
     })
+
+
+def match_list(request):
+    matches = Match.objects.all()
+    return render(request, 'team/match_list.html', {'matches': matches})

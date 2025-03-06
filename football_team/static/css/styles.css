@@ -4,6 +4,11 @@ body {
     color: #333;
 }
 
+li {
+  list-style-type: none;
+  /* Убираем маркеры */
+}
+
 .navbar {
     background-color: #0457D9; /* Цвет верхней панели */
 }

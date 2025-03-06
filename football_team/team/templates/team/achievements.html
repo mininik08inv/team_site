@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 class="text-center">Наши достижения</h1>
+
+<div class="stats-container">
+    <div class="card">
+        <div class="card-body">
+            <img src="{% static 'img/icons/second_place.png' %}" alt="" width="70">
+            <h3>{{ second_place }}</h3>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <img src="{% static 'img/icons/free-icon-pedestal-15581872.png' %}" alt="" width="70">
+            <h3 class="text-muted">{{victories}}</h3>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <img src="{% static 'img/icons/third_place.png' %}" alt="" width="45">
+            <h3>{{ third_place }}</h3>
+
+        </div>
+    </div>
+</div>
+</div>
+<ul>
+    {% for achievement in achievements %}
+    <li class="border-bottom">
+        <div class="container text-center">
+            <div class="row ">
+                <div class="col-2 text-start ">
+                    <div class="small">{{ achievement.data_event|date:"Y" }}.г</div>
+                </div>
+                <div class="col text-start">
+                    <div class="small">{{ achievement.name }}</div>
+                </div>
+                <div class="col text-start">
+                    <div class="small">{{ achievement.tournament_name }}</div>
+                </div>
+            </div>
+
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
