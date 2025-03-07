@@ -2,23 +2,70 @@
 {% load static %}
 
 {% block content %}
+
+<!-- Статистика -->
+<div class="container mt-5">
+    <h2 class="text-center">Статистика</h2>
+    <div class="stats-container">
+        <div class="card">
+            <div class="card-body">
+                <i class="fas fa-futbol fa-3x mb-2"></i>
+                <h3>{{ team.matches_played }}</h3>
+                <p class="text-muted">Матчи</p>
+                <h3>{{ total_matches }}</h3>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <i class="fas fa-trophy fa-3x mb-2"></i>
+                <h3>{{ team.matches_won }}</h3>
+                <p class="text-muted">Победы</p>
+                <h3>{{ wins|length }}</h3>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <i class="fas fa-handshake fa-3x mb-2"></i>
+                <h3>{{ team.matches_drawn }}</h3>
+                <p class="text-muted">Ничьи</p>
+                <h3>{{ draws|length }}</h3>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <i class="fas fa-times-circle fa-3x mb-2"></i>
+                <h5>{{ team.matches_lost }}</h5>
+                <p class="text-muted small">Поражения</p>
+                <h3>{{ defeats|length }}</h3>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+
+<!--Фильтры-->
+
+<!--Список матчей-->
+
 <ul>
     {% for match in matches %}
     <li class="border-bottom">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col text-center">
-                        {{ match.first_team }}
-                    </div>
-                    <div class="col text-center">
-                        <div class="h3">{{ match.result }}</div>
-                        <div class="small">{{ match.date|date:"d:m:y" }}</div>
-                    </div>
-                    <div class="col text-center">
-                        {{ match.second_team }}
-                    </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col text-center">
+                    {{ match.first_team }}
+                </div>
+                <div class="col text-center">
+                    <div class="h3">{{ match.result }}</div>
+                    <div class="small">{{ match.date|date:"d:m:y" }}</div>
+                </div>
+                <div class="col text-center">
+                    {{ match.second_team }}
                 </div>
             </div>
+        </div>
     </li>
     {% endfor %}
 </ul>

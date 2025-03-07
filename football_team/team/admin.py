@@ -70,7 +70,7 @@ class CoachAdmin(admin.ModelAdmin):
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'date', 'city', 'tournament', 'result')
+    list_display = ('__str__', 'status', 'date', 'city', 'tournament', 'result')
 
 
 @admin.register(PhotoOfMatch)

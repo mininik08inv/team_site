@@ -21,8 +21,6 @@ def team_detail(request):
     team_photos = team.team_photo.all()  # Список всех фото команды
     team_videos = team.team_video.all()  # Список всех видео команды
 
-    print(team_photos, team_videos)
-
     return render(request, 'team/team_detail.html', {
         'team': team,
         'players_by_position': players_by_position,
@@ -57,5 +55,13 @@ def player_detail(request, player_id):
 
 
 def match_list(request):
+    total_matches = Match.objects.all().count()
+    wins = Match.objects.filter(status='Победа')
+    draws = Match.objects.filter(status='Ничья')
+    defeats = Match.objects.filter(status='Поражение')
     matches = Match.objects.all()
-    return render(request, 'team/match_list.html', {'matches': matches})
+    return render(request, 'team/match_list.html', {'matches': matches,
+                                                    'total_matches': total_matches,
+                                                    'wins': wins,
+                                                    'draws': draws,
+                                                    'defeats': defeats})
