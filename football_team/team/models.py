@@ -22,7 +22,7 @@ class Team(models.Model):
 
 class Achievement(models.Model):
     name = models.CharField(max_length=200, verbose_name="Название достижения")
-    city = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, verbose_name="Город")
     data_event = models.DateField(verbose_name="Дата события")
     description = models.TextField(blank=True, null=True, verbose_name="Описание события")
     final_place = models.IntegerField(verbose_name="Итоговое место")
@@ -138,15 +138,25 @@ class Coach(models.Model):
 
 class Match(models.Model):
     STAGE_CHOICES = [
-        ('Первый круг', 'Первый круг'),
-        ('Второй круг', 'Второй круг'),
-        ('Четвертьфинал', 'Четвертьфинал'),
+        ('1 тур', '1 тур'),
+        ('2 тур', '2 тур'),
+        ('3 тур', '3 тур'),
+        ('4 тур', '5 тур'),
+        ('1/8', '1/8'),
+        ('1/4', '1/4'),
         ('Полуфинал', 'Полуфинал'),
         ('Финал', 'Финал'),
         ]
 
-    first_team = models.CharField(max_length=100, default="Команда 1", verbose_name="Первая команда")
+    STATUS_CHOICES = [
+        ('Победа', 'Победа'),
+        ('Ничья', 'Ничья'),
+        ('Поражение', 'Поражение'),
+    ]
+
+    first_team = models.CharField(max_length=100, default="Синие", verbose_name="Первая команда")
     second_team = models.CharField(max_length=100, default="Команда 2", verbose_name="Вторая команда")
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, verbose_name="Статус игры")
     result = models.CharField(max_length=20, blank=True, null=True, verbose_name="Результат")
     date = models.DateField(verbose_name="Дата")
     city = models.CharField(max_length=100, verbose_name="Город")
@@ -164,8 +174,8 @@ class Match(models.Model):
 
 
 class Goal(models.Model):
-    match = models.ForeignKey(Match, on_delete=models.CASCADE)
-    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    match = models.ForeignKey(Match, on_delete=models.CASCADE, verbose_name='Матч')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='Игрок')
     goals = models.IntegerField()
 
     class Meta:
