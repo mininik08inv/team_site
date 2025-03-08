@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Sum
 from .models import Team, Player, Coach, Match, Achievement
 
 
@@ -60,9 +61,13 @@ def match_list(request):
     draws = Match.objects.filter(status='Ничья')
     defeats = Match.objects.filter(status='Поражение')
     matches = Match.objects.all()
+    total_goals_scored = Match.objects.aggregate(Sum('goals_scored'))['goals_scored__sum']
+    total_goals_conceded = Match.objects.aggregate(Sum('goals_conceded'))['goals_conceded__sum']
+
     return render(request, 'team/match_list.html', {'matches': matches,
                                                     'total_matches': total_matches,
                                                     'wins': wins,
                                                     'draws': draws,
-                                                    'defeats': defeats})
-
+                                                    'defeats': defeats,
+                                                    'total_goals_scored': total_goals_scored,
+                                                    'total_goals_conceded': total_goals_conceded})

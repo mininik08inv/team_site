@@ -41,14 +41,20 @@
             </div>
         </div>
     </div>
-    <div class="card">
-        <div class="card-body">
-            <p class="text-muted small">забитые мячи </p>
+    <div class="stats-container">
+        <div class="card">
+            <div class="card-body">
+                <img src="{% static 'img/icons/goal_1.png' %}" alt="" width="70">
+                <p class="text-muted small">Забитые мячи </p>
+                <h3>{{ total_goals_scored }}</h3>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <p class="text-muted small">забитые мячи </p>
+        <div class="card">
+            <div class="card-body">
+                <img src="{% static 'img/icons/goals_conceded.png' %}" alt="" width="50">
+                <p class="text-muted small">Пропущенные мячи </p>
+                <h3>{{ total_goals_conceded }}</h3>
+            </div>
         </div>
     </div>
     <br>
@@ -66,7 +72,7 @@
                         {{ match.first_team }}
                     </div>
                     <div class="col text-center">
-                        <div class="h3">{{ match.result }}</div>
+                        <div class="h3">{{ match.goals_scored }} : {{ match.goals_conceded }}</div>
                         <div class="small">{{ match.date|date:"d:m:y" }}</div>
                     </div>
                     <div class="col text-center">
@@ -77,6 +83,5 @@
         </li>
         {% endfor %}
     </ul>
-
-
-    {% endblock %}
+</div>
+{% endblock %}
