@@ -45,6 +45,7 @@ li {
 }
 
 .footer {
+    position: sticky;
     background-color: #0457D9;
     color: #fff;
     padding: 20px 0;
@@ -332,3 +333,4 @@ li {
     margin-bottom: 10px;
 }
 
+/* albun detail */

@@ -65,3 +65,4 @@ def match_list(request):
                                                     'wins': wins,
                                                     'draws': draws,
                                                     'defeats': defeats})
+

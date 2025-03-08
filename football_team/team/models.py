@@ -141,7 +141,7 @@ class Match(models.Model):
         ('1 тур', '1 тур'),
         ('2 тур', '2 тур'),
         ('3 тур', '3 тур'),
-        ('4 тур', '5 тур'),
+        ('4 тур', '4 тур'),
         ('1/8', '1/8'),
         ('1/4', '1/4'),
         ('Полуфинал', 'Полуфинал'),
@@ -157,7 +157,9 @@ class Match(models.Model):
     first_team = models.CharField(max_length=100, default="Синие", verbose_name="Первая команда")
     second_team = models.CharField(max_length=100, default="Команда 2", verbose_name="Вторая команда")
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, verbose_name="Статус игры")
-    result = models.CharField(max_length=20, blank=True, null=True, verbose_name="Результат")
+    # result = models.CharField(max_length=20, blank=True, null=True, verbose_name="Результат")
+    goals_scored = models.IntegerField(default=0, verbose_name="Забитые мячи")
+    goals_conceded = models.IntegerField(default=0, verbose_name="Пропущенные мячи")
     date = models.DateField(verbose_name="Дата")
     city = models.CharField(max_length=100, verbose_name="Город")
     tournament = models.CharField(max_length=100, verbose_name="Турнир")
@@ -183,40 +185,49 @@ class Goal(models.Model):
         verbose_name_plural = "Голы игрока"
 
 
-class PhotoOfMatch(models.Model):
-    album = models.ForeignKey('PhotoAlbum', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='photosOfMatch/', verbose_name="Фото матча")
-    description = models.TextField(blank=True, null=True)
-
-    class Meta:
-        verbose_name = "Фото матча"
-
-
-class VideoOfMatch(models.Model):
-    album = models.ForeignKey('VideoAlbum', on_delete=models.CASCADE)
-    video = models.FileField(upload_to='videosOfMatch/', verbose_name="Видео матча")
-    description = models.TextField(blank=True, null=True)
-
-    class Meta:
-        verbose_name = "Видео матча"
-        verbose_name_plural = "Видео матчей"
-
-
-class PhotoAlbum(models.Model):
-    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='photo_album')
-    name = models.CharField(max_length=100, verbose_name="Название альбома")
-    description = models.TextField(blank=True, null=True, verbose_name="Описание альбома")
-
-    class Meta:
-        verbose_name = "Фотоальбом матча"
-        verbose_name_plural = "Фотоальбомы матчей"
-
-
-class VideoAlbum(models.Model):
-    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='video_album')
-    name = models.CharField(max_length=100, verbose_name="Название альбома")
-    description = models.TextField(blank=True, null=True, verbose_name="Описание альбома")
-
-    class Meta:
-        verbose_name = "Видеоальбом матча"
-        verbose_name_plural = "Видеоальбомы матчей"
+# class PhotoOfMatch(models.Model):
+#     album = models.ForeignKey('PhotoAlbum', related_name='photos', on_delete=models.CASCADE)
+#     image = models.ImageField(upload_to='photosOfMatch/', verbose_name="Фото матча")
+#     description = models.TextField(blank=True, null=True, verbose_name="Описание")
+#
+#     class Meta:
+#         verbose_name = "Фото матча"
+#         verbose_name_plural = "Фотографии матчей"
+#
+#
+#
+#
+# class VideoOfMatch(models.Model):
+#     album = models.ForeignKey('VideoAlbum', related_name='videos', on_delete=models.CASCADE)
+#     video = models.FileField(upload_to='videosOfMatch/', verbose_name="Видео матча")
+#     description = models.TextField(blank=True, null=True)
+#
+#     class Meta:
+#         verbose_name = "Видео матча"
+#         verbose_name_plural = "Видео матчей"
+#
+#
+# class PhotoAlbum(models.Model):
+#     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='photo_album')
+#     name = models.CharField(max_length=100, verbose_name="Название альбома")
+#     description = models.TextField(blank=True, null=True, verbose_name="Описание альбома")
+#
+#     class Meta:
+#         verbose_name = "Фотоальбом матча"
+#         verbose_name_plural = "Фотоальбомы матчей"
+#
+#     def __str__(self):
+#         return self.name
+#
+#     def get_absolute_url(self):
+#         return reverse('photo_album_detail', kwargs={'photo_album_id': self.pk})
+#
+#
+# class VideoAlbum(models.Model):
+#     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='video_album')
+#     name = models.CharField(max_length=100, verbose_name="Название альбома")
+#     description = models.TextField(blank=True, null=True, verbose_name="Описание альбома")
+#
+#     class Meta:
+#         verbose_name = "Видеоальбом матча"
+#         verbose_name_plural = "Видеоальбомы матчей"

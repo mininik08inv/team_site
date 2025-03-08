@@ -1,0 +1,69 @@
+{% extends "gallery/gallery_base.html" %}
+{% load static %}
+
+
+{% block header %}
+
+
+
+    <script type="text/javascript">
+        {% if previous_image %}
+            previous_image_url = '{% url 'gallery:album_image_detail' apk previous_image.pk previous_image.slug %}#image_{{ previous_image.pk }}';
+        {% endif %}
+        {% if next_image %}
+            next_image_url = '{% url 'gallery:album_image_detail' apk next_image.pk next_image.slug %}#image_{{ next_image.pk }}';
+        {% endif %}
+    </script>
+    <script type="text/javascript" src="{% static 'gallery/js/image_navigation.js' %}"></script>
+    <style>
+    body, html {
+        height: 100%;
+        overflow: hidden;
+    }
+    #footer {
+        display: none;
+    }
+    #content {
+        padding-bottom: 0;
+        width: 100%;
+    }
+    </style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<a href="{{ image.data.url }}">
+    <img id="image_preview" src="{{ image.data_preview.url }}" alt="{{ image.title }}"/>
+</a>
+
+<div id="album_preview">
+{% if album_images %}
+
+    {% for image in album_images %}
+        <a href="{% url 'gallery:album_image_detail' apk image.pk image.slug %}#image_{{ image.pk }}" style="display: inline-block;">
+            {% include 'gallery/partials/thumbnail_preview.html' %}
+       </a>
+    {% endfor %}
+
+{% elif albums %}
+
+    {% for album in albums %}
+
+        {% with album.display_highlight as image %}
+
+        <a href="{% url 'gallery:album_detail' album.pk album.slug  %}" style="display: inline-block;">
+            {% include 'gallery/partials/thumbnail_preview.html' %}
+        </a>
+
+        {% endwith %}
+
+    {% endfor %}
+
+
+{% endif %}
+ </div>
+
+{% endblock %}

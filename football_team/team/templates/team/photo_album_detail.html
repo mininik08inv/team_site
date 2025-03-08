@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% for photo in photos %}
+<img src="{{ photo.image.url }}" alt="{{ photo.description }}" class="card-img-top">
+
+<div class="container mt-5">
+    <h1>{{ album.name }}</h1>
+    <p>{{ album.description }}</p>
+    <div class="row">
+        {% for photo in album.photos.all %}
+        <div class="col-md-4">
+            <img src="{{ photo.image.url }}" alt="{{ photo.name }}" class="img-fluid">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
