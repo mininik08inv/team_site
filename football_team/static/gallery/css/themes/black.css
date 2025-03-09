@@ -1,10 +1,10 @@
 body {
-    background-color: #222;
+    background-color: #bad5f5;
     color: #eee;
 }
 
 #top_bar {
-    background-color: #111;
+    background-color: #0457D9;
 }
 
 #title, #title a {
@@ -17,7 +17,7 @@ body {
 }
 
 #footer {
-    background-color: #181818;
+    background-color: #0457D9;
     color: #ddd;
 }
 
