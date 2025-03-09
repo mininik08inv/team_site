@@ -64,10 +64,16 @@ def match_list(request):
     total_goals_scored = Match.objects.aggregate(Sum('goals_scored'))['goals_scored__sum']
     total_goals_conceded = Match.objects.aggregate(Sum('goals_conceded'))['goals_conceded__sum']
 
-    return render(request, 'team/match_list.html', {'matches': matches,
-                                                    'total_matches': total_matches,
-                                                    'wins': wins,
-                                                    'draws': draws,
-                                                    'defeats': defeats,
-                                                    'total_goals_scored': total_goals_scored,
-                                                    'total_goals_conceded': total_goals_conceded})
+    context = {'matches': matches,
+               'total_matches': total_matches,
+               'wins': wins,
+               'draws': draws,
+               'defeats': defeats,
+               'total_goals_scored': total_goals_scored,
+               'total_goals_conceded': total_goals_conceded}
+
+    return render(request, 'team/match_list.html', context=context)
+
+def match_detail(request, match_id):
+    match = get_object_or_404(Match, pk=match_id)
+    return render(request, 'team/match_detail.html', {'match': match})

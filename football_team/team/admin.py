@@ -67,8 +67,13 @@ class CoachAdmin(admin.ModelAdmin):
 
 # -------------matches-------------
 
+class GoalInline(admin.TabularInline):
+    model = Goal
+    extra = 0
+
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
+    inlines = [GoalInline]
     list_display = ('__str__', 'status', 'date', 'city', 'tournament')
     ordering = ('date', 'status', )
 

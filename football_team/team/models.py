@@ -164,7 +164,9 @@ class Match(models.Model):
     city = models.CharField(max_length=100, verbose_name="Город")
     tournament = models.CharField(max_length=100, verbose_name="Турнир")
     stage = models.CharField(max_length=100, choices=STAGE_CHOICES, default='Первый круг', verbose_name="Стадия турнира")
+    description = models.TextField(blank=True, verbose_name="Описание матча")
     players = models.ManyToManyField('Player', through='Goal')
+
 
     class Meta:
         verbose_name = "Матч"
@@ -173,6 +175,9 @@ class Match(models.Model):
     def __str__(self):
         commands = self.first_team + ' - ' + self.second_team
         return commands
+
+    def get_absolute_url(self):
+        return reverse('match_detail', kwargs={'match_id': self.pk})
 
 
 class Goal(models.Model):

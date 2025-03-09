@@ -2,4 +2,35 @@
 {% load static %}
 
 {% block content %}
+<div style="margin-top: 20px;">
+    <div class="match-summary__state-matchboard ">
+        <div class="matchboard"><span class="matchboard__card"><span
+                class="matchboard__card-game--winner matchboard__card-game">{{ match.first_team }}</span></span><span
+                class="matchboard__hyphen"></span><span class="matchboard__card matchboard__card--no_margin"><span
+                class="matchboard__card-game">{{ match.second_team }}</span></span></div>
+
+        <div class="matchboard"><span class="matchboard__card"><span
+                class="matchboard__card-game--winner matchboard__card-game">{{ match.goals_scored }}</span></span><span
+                class="matchboard__hyphen"></span><span class="matchboard__card matchboard__card--no_margin"><span
+                class="matchboard__card-game">{{ match.goals_conceded }}</span></span></div>
+    </div>
+</div>
+<p>Статус игры: {{ match.status }}</p>
+<p>Дата: {{ match.date }}</p>
+<p>Город: {{ match.city }}</p>
+<p>Турнир: {{ match.tournament }}</p>
+<p>Стадия турнира: {{ match.stage }}</p>
+{% if match.description %}
+<p>Комментарий к матчу: {{ match.description }}</p>
+{% endif %}
+<h2>Голы</h2>
+<ul>
+    {% for goal in match.goal_set.all %}
+    <div class="col">
+        <a href="{% url 'player_detail' goal.player.id %}">{{ goal.player }}</a>  - {{ goal.goals }}
+    </div>
+    {% endfor %}
+</ul>
+
+
 {% endblock %}
