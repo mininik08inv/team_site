@@ -3,13 +3,13 @@
 
 {% block content %}
 <!-- Общие фото команды в слайдере -->
-<div class="container mt-5">
+<div class="container mt-4">
     <div id="team-photos-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             {% for photo in team_photos %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <img src="{{ photo.image.url }}" alt="{{photo.description}}" class="d-block w-100">
-                </div>
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ photo.image.url }}" alt="{{photo.description}}" class="d-block w-100">
+            </div>
             {% endfor %}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#team-photos-carousel" data-bs-slide="prev">
@@ -24,35 +24,42 @@
 </div>
 
 <!-- О команде -->
-<div class="container mt-5">
-    <h2 class="text-center d-md-block btn btn-primary" data-bs-toggle="collapse" data-bs-target="#teamDescription">О команде</h2>
+<div class="container mt-4 text-center">
+    <h2 class="text-center d-md-block btn btn-primary" data-bs-toggle="collapse" data-bs-target="#teamDescription">О
+        команде</h2>
     <p class="text-center d-none d-md-block">{{ team.description }}</p>
     <div class="collapse d-md-none" id="teamDescription">
+        <div class="anthem">
+            <audio controls>
+                <source src="{% static 'audio/anthem.mpeg' %}" type="audio/mpeg">
+                Ваш браузер не поддерживает тег audio.
+            </audio>
+        </div>
         <p class="text-center">{{ team.description }}</p>
     </div>
 </div>
 
 
 <!-- Тренеры -->
-<div class="container mt-5">
+<div class="container mt-4">
     <h2 class="text-center">ТРЕНЕРСКИЙ СОСТАВ</h2>
     <div class="coaches-grid">
         {% for coach in coaches %}
-                <div class="coach-card">
-                    <div class="card">
-                        {% if coach.photo %}
-                            <img src="{{ coach.photo.url }}" alt="{{ coach }}" class="card-img-top">
-                        {% else %}
-                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center">
-                                <img src="{% static 'img/default_image2.jpeg' %}" alt="" width="50">
-                            </div>
-                        {% endif %}
-                        <div class="card-body">
-                            <h6 class="card-title">{{ coach }}</h6>
-                            <!-- Кнопка "Подробнее" удалена -->
-                        </div>
-                    </div>
+        <div class="coach-card">
+            <div class="card">
+                {% if coach.photo %}
+                <img src="{{ coach.photo.url }}" alt="{{ coach }}" class="card-img-top">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center">
+                    <img src="{% static 'img/default_image2.jpeg' %}" alt="" width="50">
                 </div>
+                {% endif %}
+                <div class="card-body">
+                    <h6 class="card-title">{{ coach }}</h6>
+                    <!-- Кнопка "Подробнее" удалена -->
+                </div>
+            </div>
+        </div>
 
         {% endfor %}
     </div>
@@ -61,27 +68,27 @@
 <!-- Игроки по амплуа -->
 <div class="container mt-5">
     {% for position, players in players_by_position.items %}
-        <h2 class="text-center">{{ position }}</h2>
-        <div class="players-grid">
-            {% for player in players %}
-                <a href="{% url 'player_detail' player.id %}" class="player-card-link"> <!-- Вся карточка — это ссылка -->
-                    <div class="player-card">
-                        <div class="card">
-                            {% if player.main_photo %}
-                                <img src="{{ player.main_photo.url }}" alt="{{ player.name }}" class="card-img-top">
-                            {% else %}
-                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center">
-                                    <img src="{% static 'img/default_image.jpg' %}" alt="" width="50">
-                                </div>
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ player.first_name }} {{player.last_name}}</h5>
-                            </div>
-                        </div>
+    <h2 class="text-center">{{ position }}</h2>
+    <div class="players-grid">
+        {% for player in players %}
+        <a href="{% url 'player_detail' player.id %}" class="player-card-link"> <!-- Вся карточка — это ссылка -->
+            <div class="player-card">
+                <div class="card">
+                    {% if player.main_photo %}
+                    <img src="{{ player.main_photo.url }}" alt="{{ player.name }}" class="card-img-top">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center">
+                        <img src="{% static 'img/default_image.jpg' %}" alt="" width="50">
                     </div>
-                </a>
-            {% endfor %}
-        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ player.first_name }} {{player.last_name}}</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
