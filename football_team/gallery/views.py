@@ -1,10 +1,11 @@
 from django.views.generic import DetailView, ListView, FormView
 from django.urls import reverse
 from django.contrib import messages
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.templatetags.static import static
 from gallery.models import Image, Album
+from team.models import TeamVideo
 from gallery.forms import ImageCreateForm
 from gallery import settings
 
@@ -114,3 +115,7 @@ class AlbumView(GallerySettingsMixin, DetailView):
 class AlbumList(GallerySettingsMixin, ListView):
     model = Album
     template_name = 'gallery/album_list.html'
+
+def video_list(request):
+    videos = TeamVideo.objects.all()
+    return render(request, template_name="gallery/video_list.html", context={'videos': videos})
