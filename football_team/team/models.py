@@ -70,6 +70,12 @@ class Player(models.Model):
         ('FW', 'Нападающий'),
     ]
 
+    IN_THE_TEAM_CHOICES = [
+        ('YES', 'В составе'),
+        ('NO', 'Не в составе'),
+        ('UNKNOWN', 'Статус неопределен'),
+    ]
+
     last_name = models.CharField(max_length=100, verbose_name="Фамилия")
     first_name = models.CharField(max_length=100, verbose_name="Имя")
     patronymic = models.CharField(max_length=100, blank=True, verbose_name="Отчество")
@@ -77,6 +83,7 @@ class Player(models.Model):
     main_photo = models.ImageField(upload_to='player_photos/', blank=True, verbose_name="Основное фото")
     team = models.ForeignKey('Team', on_delete=models.CASCADE, related_name='players', verbose_name="Команда")
     position = models.CharField(max_length=2, choices=POSITION_CHOICES, verbose_name="Амплуа")
+    in_the_team = models.CharField(max_length=10, choices=IN_THE_TEAM_CHOICES, default='YES', verbose_name="Статус")
     last_modified = models.DateTimeField(auto_now=True, verbose_name="Дата последнего изменения")
 
     class Meta:
