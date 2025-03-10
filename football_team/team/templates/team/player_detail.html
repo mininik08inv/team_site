@@ -29,43 +29,41 @@
     </div>
 
     <!-- Дополнительные фото игрока -->
-    <div class="row mt-5">
-        <h2 class="text-center">Дополнительные фото</h2>
-        {% for photo in additional_photos %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="{{ photo.image.url }}" alt="{{ photo.description }}" class="card-img-top">
-                <div class="card-body">
-                    <p class="card-text">{{ photo.description }}</p>
-                </div>
-            </div>
+    <h2 class="text-center">Дополнительные фото</h2>
+    <div class="photo-grid">
+    {% for photo in additional_photos %}
+        <div class="photo-item">
+            <a href="{{ photo.image.url }}">
+                <img src="{{ photo.image.url }}" alt="{{ photo.description }}" class="responsive-image">
+            </a>
+            <p class="card-text">{{ photo.description }}</p>
         </div>
-        {% empty %}
+    {% empty %}
         <p class="text-center text-muted">Дополнительных фото нет.</p>
-        {% endfor %}
-    </div>
+    {% endfor %}
+</div>
 
-    <!-- Видео игрока -->
-    <div class="row mt-5">
-        <h2 class="text-center">Видео</h2>
-        {% for video in additional_videos %}
-        <div class="col-md-6 mb-4">
-            <div class="card">
-                <video controls class="w-100">
-                    <source src="{{ video.video.url }}" type="video/mp4">
-                    Ваш браузер не поддерживает видео.
-                </video>
-                <div class="card-body">
-                    <p class="card-text">{{ video.description }}</p>
-                </div>
-            </div>
+
+
+<!-- Видео игрока -->
+<div class="row mt-5">
+    <h2 class="text-center">Видео</h2>
+    {% for video in additional_videos %}
+    <div class="col-md-4">
+        <div class="card mb-4" style="height: 300px;">
+            <video class="embed-responsive embed-responsive-16by9" controls style="height: 100%;">
+                <source src="{{ video.video.url }}" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+            </video>
+            <p>{{ video.description }}</p>
         </div>
-        {% empty %}
-        <p class="text-center text-muted">Видео отсутствуют.</p>
-        {% endfor %}
     </div>
+    {% empty %}
+    <p class="text-center text-muted">Видео отсутствуют.</p>
+    {% endfor %}
+</div>
 
-   <!-- Матчи, в которых игрок забивал голы -->
+<!-- Матчи, в которых игрок забивал голы -->
 <div class="row mt-5">
     <h2 class="text-center">Результативные матчи</h2>
     {% for goal in player.goal_set.all %}
@@ -73,8 +71,9 @@
         <a href="{% url 'match_detail' goal.match.id %}">
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">{{ goal.match }} {{ goal.match.goals_scored }}:{{ goal.match.goals_conceded }}</h5>
-                    <p class="card-text">{{ goal.match.date|date:"d:m:y" }}  Колличество голов: {{ goal.goals }} </p>
+                    <h5 class="card-title">{{ goal.match }}<br>{{ goal.match.goals_scored }}:{{
+                        goal.match.goals_conceded }}</h5>
+                    <p class="card-text">{{ goal.match.date|date:"d:m:y" }} Колличество голов: {{ goal.goals }} </p>
                 </div>
             </div>
         </a>
