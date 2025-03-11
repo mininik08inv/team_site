@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Топ 10 бомбардиров -->
+<div class="container mt-4">
+    <h2 class="text-center">ТОП 10 БОМБАРДИРОВ</h2>
+    <div class="players-grid">
+        {% for player in top_scorers %}
+        <a href="{% url 'player_detail' player.id %}" class="player-card-link"> <!-- Вся карточка — это ссылка -->
+            <div class="player-card">
+                <div class="card">
+                    {% if player.main_photo %}
+                    <img src="{{ player.main_photo.url }}" alt="{{ player.name }}" class="card-img-top">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center">
+                        <img src="{% static 'img/default_image.jpg' %}" alt="" width="50">
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ player.first_name }} {{player.last_name}}</h5>
+                        <p class="card-text">Голы: {{ player.goals }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -24,6 +24,9 @@
                 <li class="list-group-item">Дата рождения: {{ player.date_of_birth }}</li>
                 <li class="list-group-item">Амплуа: {{ player.get_position_display }}</li>
                 <li class="list-group-item">Команда: {{ player.team.name }}</li>
+                {% if player.in_the_team == 'NO'%}
+                <li class="list-group-item">Статус: <span style="color:red;">ВЫШЕЛ ИЗ СОСТАВА КОМАНДЫ</span></li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -71,8 +74,8 @@
         <a href="{% url 'match_detail' goal.match.id %}">
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">{{ goal.match }}<br>{{ goal.match.goals_scored }}:{{
-                        goal.match.goals_conceded }}</h5>
+                    <h5 class="card-title">{{ goal.match }}<br>
+                        {{ goal.match.goals_scored }}:{{ goal.match.goals_conceded }}</h5>
                     <p class="card-text">{{ goal.match.date|date:"d:m:y" }} Колличество голов: {{ goal.goals }} </p>
                 </div>
             </div>

@@ -77,3 +77,10 @@ def match_list(request):
 def match_detail(request, match_id):
     match = get_object_or_404(Match, pk=match_id)
     return render(request, 'team/match_detail.html', {'match': match})
+
+def top_scorers(request):
+    # Получаем список из 10 лучших бомбардиров
+    top_scorers = Player.objects.annotate(goals=Sum('goal__goals')).filter(goals__gt=0).order_by('-goals')[:10]
+    print(top_scorers)
+    return render(request, 'team/top_scorers.html', {'top_scorers': top_scorers})
+

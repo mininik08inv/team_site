@@ -71,6 +71,7 @@
     <h2 class="text-center">{{ position }}</h2>
     <div class="players-grid">
         {% for player in players %}
+        {% if player.in_the_team == 'YES'%}
         <a href="{% url 'player_detail' player.id %}" class="player-card-link"> <!-- Вся карточка — это ссылка -->
             <div class="player-card">
                 <div class="card">
@@ -87,6 +88,7 @@
                 </div>
             </div>
         </a>
+        {% endif %}
         {% endfor %}
     </div>
     {% endfor %}
