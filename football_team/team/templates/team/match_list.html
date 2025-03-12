@@ -81,12 +81,15 @@
                 <select class="form-control" id="opponent" name="opponent">
                     <option value="">Все</option>
                     {% for opponent in opponents %}
-                        <option value="{{ opponent }}">{{ opponent }}</option>
+                    <option value="{{ opponent }}">{{ opponent }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <div style="text-align: center;">
-                <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 10px;">Применить</button>
+            <div class="row mt-3">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary">Применить фильтры</button>
+                    <a href="{% url 'match_list' %}" class="btn btn-secondary">Сбросить</a>
+                </div>
             </div>
         </div>
     </form>

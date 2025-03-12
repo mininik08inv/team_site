@@ -27,10 +27,12 @@
 <ul>
     {% for goal in match.goal_set.all %}
     <div class="col">
-        <a href="{% url 'player_detail' goal.player.id %}">{{ goal.player }}</a>  - {{ goal.goals }}
+        <a href="{% url 'player_detail' goal.player.id %}">{{ goal.player }}</a> - {{ goal.goals }}
     </div>
+
     {% endfor %}
 </ul>
-
-
+<div class="card-footer text-center">
+    <a href="{% url 'match_list' %}" class="btn btn-primary">Назад к списку матчей</a>
+</div>
 {% endblock %}
