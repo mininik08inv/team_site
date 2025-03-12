@@ -33,22 +33,22 @@ def team_detail(request):
 
 
 def achievements(request):
-    achievements = Achievement.objects.all()
+    achievements = Achievement.objects.all().order_by('-data_event')
 
     # Фильтрация по году
     year = request.GET.get('year')
     if year:
-        achievements = achievements.filter(data_event__year=year)
+        achievements = achievements.filter(data_event__year=year).order_by('-data_event')
 
     # Фильтрация по городу
     city = request.GET.get('city')
     if city:
-        achievements = achievements.filter(city=city)
+        achievements = achievements.filter(city=city).order_by('-data_event')
 
     # Фильтрация по названию турнира
     tournament_name = request.GET.get('tournament_name')
     if tournament_name:
-        achievements = achievements.filter(tournament_name=tournament_name)
+        achievements = achievements.filter(tournament_name=tournament_name).order_by('-data_event')
 
     # Уникальные значения для фильтров
     cities = Achievement.objects.values_list('city', flat=True).distinct()
@@ -142,5 +142,4 @@ def match_detail(request, match_id):
 def top_scorers(request):
     # Получаем список из 10 лучших бомбардиров
     top_scorers = Player.objects.annotate(goals=Sum('goal__goals')).filter(goals__gt=0).order_by('-goals')[:10]
-    print(top_scorers)
     return render(request, 'team/top_scorers.html', {'top_scorers': top_scorers})

@@ -9,7 +9,7 @@
                 {% if achievement.image %}
                 <img src="{{ achievement.image.url }}" class="card-img-top" alt="{{ achievement.name }}">
                 {% else %}
-                <img src="{% static 'images/default_achievement.jpg' %}" class="card-img-top" alt="Default Image">
+                <img src="{% static 'img/default_image_achievement.png' %}" class="card-img-top" alt="Default Image">
                 {% endif %}
                 <div class="card-body">
                     <h1 class="card-title text-center">{{ achievement.name }}</h1>
