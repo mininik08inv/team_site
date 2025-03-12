@@ -228,6 +228,33 @@ li {
 .player-card .btn {
     width: 100%;
 }
+.playertop {
+    background: #e3000f;
+}
+.playernum {
+    text-align: right;
+    font-size: 16px;
+    padding: 0 3%;
+    height: 35px;
+    line-height: 35px;
+    color: #ffffff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, #e3000f, #c0000d);
+}
+.playernum2 {
+    float: left;
+    width: 65%;
+    padding: 0 3%;
+    height: 35px;
+    line-height: 35px;
+    color: #ffffff;
+    font-size: 16px;
+    background: #e3000f;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, #e3000f, #c0000d);
+}
+
+
 
 /* Стили для сетки тренеров */
 .coaches-grid {

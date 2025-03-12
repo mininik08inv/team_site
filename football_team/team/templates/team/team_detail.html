@@ -82,6 +82,10 @@
                         <img src="{% static 'img/default_image.jpg' %}" alt="" width="50">
                     </div>
                     {% endif %}
+                    <div class="playertop">
+                            <div class="playernum2">{{ player.date_of_birth|date:"d:m:Y" }}</div>
+                            <div class="playernum">#{{ player.number }}</div>
+                        </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ player.first_name }} {{player.last_name}}</h5>
                     </div>

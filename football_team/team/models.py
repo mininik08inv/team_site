@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.urls import reverse
 
 
@@ -86,18 +87,31 @@ class Player(models.Model):
     main_photo = models.ImageField(upload_to='player_photos/', blank=True, verbose_name="Основное фото")
     team = models.ForeignKey('Team', on_delete=models.CASCADE, related_name='players', verbose_name="Команда")
     position = models.CharField(max_length=2, choices=POSITION_CHOICES, verbose_name="Амплуа")
+    number = models.IntegerField(verbose_name="Номер игрока", null=True, blank=True)
     in_the_team = models.CharField(max_length=10, choices=IN_THE_TEAM_CHOICES, default='YES', verbose_name="Статус")
     last_modified = models.DateTimeField(auto_now=True, verbose_name="Дата последнего изменения")
 
     class Meta:
         verbose_name = "Игрок"
         verbose_name_plural = "Игроки"
+        constraints = [
+            models.UniqueConstraint(fields=['team', 'number'], name='unique_team_number')
+        ]
 
     def __str__(self):
         return f'{self.last_name} {self.first_name}'
 
-    def get_absolute_url(self):
-        return reverse('player_detail', kwargs={'player_id': self.pk})
+    def clean(self):
+        # Валидация, чтобы номер игрока был уникальным в рамках команды
+        if self.number is not None and self.in_the_team == 'YES':
+            if Player.objects.filter(team=self.team, number=self.number).exclude(pk=self.pk).exists():
+                raise ValidationError({'number': 'Игрок с таким номером уже существует в этой команде.'})
+
+    def save(self, *args, **kwargs):
+        # Если игрок больше не в составе, освобождаем его номер
+        if self.in_the_team == 'NO':
+            self.number = None
+        super().save(*args, **kwargs)
 
 
 class Photo(models.Model):

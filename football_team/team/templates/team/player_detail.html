@@ -23,6 +23,7 @@
             <ul class="list-group">
                 <li class="list-group-item">Дата рождения: {{ player.date_of_birth }}</li>
                 <li class="list-group-item">Амплуа: {{ player.get_position_display }}</li>
+                <li class="list-group-item">Номер: {{ player.number }}</li>
                 <li class="list-group-item">Команда: {{ player.team.name }}</li>
                 {% if player.in_the_team == 'NO'%}
                 <li class="list-group-item">Статус: <span style="color:red;">ВЫШЕЛ ИЗ СОСТАВА КОМАНДЫ</span></li>
