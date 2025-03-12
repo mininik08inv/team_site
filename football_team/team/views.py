@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum
+from datetime import datetime
 from .models import Team, Player, Coach, Match, Achievement
 
 
@@ -33,12 +34,17 @@ def team_detail(request):
 
 def achievements(request):
     achievements = Achievement.objects.all()
-    victories = len(Achievement.objects.filter(final_place=1))
-    second_place = len(Achievement.objects.filter(final_place=2))
-    third_place = len(Achievement.objects.filter(final_place=3))
+    victories = len(achievements.filter(final_place=1))
+    second_place = len(achievements.filter(final_place=2))
+    third_place = len(achievements.filter(final_place=3))
     return render(request, 'team/achievements.html', {'achievements': achievements,
                                                       'victories': victories, 'second_place': second_place,
                                                       'third_place': third_place})
+
+
+def achievement_list(request):
+    achievements = Achievement.objects.all()
+    return render(request, 'achievements/achievement_list.html', {'achievements': achievements})
 
 
 def player_detail(request, player_id):
@@ -56,31 +62,57 @@ def player_detail(request, player_id):
 
 
 def match_list(request):
-    total_matches = Match.objects.all().count()
-    wins = Match.objects.filter(status='Победа')
-    draws = Match.objects.filter(status='Ничья')
-    defeats = Match.objects.filter(status='Поражение')
-    matches = Match.objects.all()
-    total_goals_scored = Match.objects.aggregate(Sum('goals_scored'))['goals_scored__sum']
-    total_goals_conceded = Match.objects.aggregate(Sum('goals_conceded'))['goals_conceded__sum']
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    status = request.GET.get('status')
+    opponent = request.GET.get('opponent')
 
-    context = {'matches': matches,
-               'total_matches': total_matches,
-               'wins': wins,
-               'draws': draws,
-               'defeats': defeats,
-               'total_goals_scored': total_goals_scored,
-               'total_goals_conceded': total_goals_conceded}
+    matches = Match.objects.all().order_by('-date')
+
+    # Фильтрация по датам
+    if start_date or end_date:
+        start_date = start_date or '2015-01-01'
+        end_date = end_date or datetime.now().strftime('%Y-%m-%d')
+        matches = matches.filter(date__range=[start_date, end_date]).order_by('-date')
+
+    # Фильтрация по статусу и оппоненту
+    if status:
+        matches = matches.filter(status=status).order_by('-date')
+    if opponent:
+        matches = matches.filter(second_team=opponent).order_by('-date')
+
+    # Агрегация данных
+    total_matches = matches.count()
+    wins = matches.filter(status='Победа').count()
+    draws = matches.filter(status='Ничья').count()
+    defeats = matches.filter(status='Поражение').count()
+    total_goals_scored = matches.aggregate(Sum('goals_scored'))['goals_scored__sum'] or 0
+    total_goals_conceded = matches.aggregate(Sum('goals_conceded'))['goals_conceded__sum'] or 0
+
+    # Получение списка оппонентов
+    opponents = Match.objects.values_list('second_team', flat=True).distinct()
+
+    context = {
+        'matches': matches,
+        'total_matches': total_matches,
+        'wins': wins,
+        'draws': draws,
+        'defeats': defeats,
+        'total_goals_scored': total_goals_scored,
+        'total_goals_conceded': total_goals_conceded,
+        'opponents': opponents,
+    }
 
     return render(request, 'team/match_list.html', context=context)
+
 
 def match_detail(request, match_id):
     match = get_object_or_404(Match, pk=match_id)
     return render(request, 'team/match_detail.html', {'match': match})
+
 
 def top_scorers(request):
     # Получаем список из 10 лучших бомбардиров
     top_scorers = Player.objects.annotate(goals=Sum('goal__goals')).filter(goals__gt=0).order_by('-goals')[:10]
     print(top_scorers)
     return render(request, 'team/top_scorers.html', {'top_scorers': top_scorers})
-

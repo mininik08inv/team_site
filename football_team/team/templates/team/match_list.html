@@ -10,7 +10,6 @@
         <div class="card">
             <div class="card-body">
                 <i class="fas fa-futbol fa-3x mb-2"></i>
-                <h3>{{ team.matches_played }}</h3>
                 <p class="text-muted">Матчи</p>
                 <h3>{{ total_matches }}</h3>
             </div>
@@ -18,26 +17,22 @@
         <div class="card">
             <div class="card-body">
                 <i class="fas fa-trophy fa-3x mb-2"></i>
-                <h3>{{ team.matches_won }}</h3>
                 <p class="text-muted">Победы</p>
-                <h3>{{ wins|length }}</h3>
-
+                <h3>{{ wins }}</h3> <!-- Исправлено: wins|length удалено -->
             </div>
         </div>
         <div class="card">
             <div class="card-body">
                 <i class="fas fa-handshake fa-3x mb-2"></i>
-                <h3>{{ team.matches_drawn }}</h3>
                 <p class="text-muted">Ничьи</p>
-                <h3>{{ draws|length }}</h3>
+                <h3>{{ draws }}</h3> <!-- Исправлено: draws|length удалено -->
             </div>
         </div>
         <div class="card">
             <div class="card-body">
                 <i class="fas fa-times-circle fa-3x mb-2"></i>
-                <h5>{{ team.matches_lost }}</h5>
                 <p class="text-muted small">Поражения</p>
-                <h3>{{ defeats|length }}</h3>
+                <h3>{{ defeats }}</h3> <!-- Исправлено: defeats|length удалено -->
             </div>
         </div>
     </div>
@@ -60,10 +55,46 @@
     <br>
 
     <!--Фильтры-->
+    <form method="get" class="">
+        <div class="row">
+            <div class="col-6">
+                <label for="start_date">Матчи с:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date">
+            </div>
+            <div class="col-6">
+                <label for="end_date">до:</label>
+                <input type="date" class="form-control" id="end_date" name="end_date">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="status">Статус:</label>
+                <select class="form-control" id="status" name="status">
+                    <option value="">Все</option>
+                    <option value="Победа">Победа</option>
+                    <option value="Ничья">Ничья</option>
+                    <option value="Поражение">Поражение</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="opponent">Соперник:</label>
+                <select class="form-control" id="opponent" name="opponent">
+                    <option value="">Все</option>
+                    {% for opponent in opponents %}
+                        <option value="{{ opponent }}">{{ opponent }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 10px;">Применить</button>
+            </div>
+        </div>
+    </form>
+
+    <br>
 
     <!--Список матчей-->
-
-    <ul>
+    <ul style="text-align: center;">
         {% for match in matches %}
         <li class="border-bottom">
             <a href="{% url 'match_detail' match.id %}">
