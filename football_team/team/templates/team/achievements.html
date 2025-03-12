@@ -4,6 +4,7 @@
 {% block content %}
 <h1 class="text-center">Наши достижения</h1>
 
+<!-- Статистика -->
 <div class="stats-container">
     <div class="card">
         <div class="card-body">
@@ -14,38 +15,82 @@
     <div class="card">
         <div class="card-body">
             <img src="{% static 'img/icons/free-icon-pedestal-15581872.png' %}" alt="" width="70">
-            <h3 class="text-muted">{{victories}}</h3>
+            <h3 class="text-muted">{{ victories }}</h3>
         </div>
     </div>
     <div class="card">
         <div class="card-body">
             <img src="{% static 'img/icons/third_place.png' %}" alt="" width="45">
             <h3>{{ third_place }}</h3>
-
         </div>
     </div>
 </div>
 <br>
 
-</div>
-<ul>
-    {% for achievement in achievements %}
-    <li class="border-bottom">
-        <div class="container text-center">
-            <div class="row ">
-                <div class="col-2 text-start ">
-                    <div class="small">{{ achievement.data_event|date:"Y" }}.г</div>
-                </div>
-                <div class="col text-start">
-                    <div class="small">{{ achievement.name }}</div>
-                </div>
-                <div class="col text-start">
-                    <div class="small">{{ achievement.tournament_name }}</div>
-                </div>
+<!-- Фильтры -->
+<div class="container mb-4">
+    <form method="get" class="filter-form">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="year">Год:</label>
+                <input type="number" class="form-control" id="year" name="year" min="2000" max="2100" value="{{ request.GET.year }}" placeholder="Год">
             </div>
-
         </div>
-    </li>
-    {% endfor %}
-</ul>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label for="city">Город:</label>
+                <select class="form-control" id="city" name="city">
+                    <option value="">Все города</option>
+                    {% for city in cities %}
+                        <option value="{{ city }}" {% if request.GET.city == city %}selected{% endif %}>{{ city }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="tournament_name">Название турнира:</label>
+                <select class="form-control" id="tournament_name" name="tournament_name">
+                    <option value="">Все турниры</option>
+                    {% for tournament in tournaments %}
+                        <option value="{{ tournament }}" {% if request.GET.tournament_name == tournament %}selected{% endif %}>{{ tournament }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Применить фильтры</button>
+                <a href="{% url 'achievements' %}" class="btn btn-secondary">Сбросить</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Список достижений -->
+<div class="container mt-4">
+    <div class="row">
+        {% for achievement in achievements %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <a href="{% url 'achievement_detail' achievement.id %}" style="text-decoration: none; color: inherit;">
+                    <div class="card-body">
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col-3 text-start">
+                                    <div class="small">{{ achievement.data_event|date:"Y" }}</div>
+                                </div>
+                                <div class="col text-start">
+                                    <div class="small">{{ achievement.name }}</div>
+                                </div>
+                                <div class="col text-start">
+                                    <div class="small">{{ achievement.tournament_name }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

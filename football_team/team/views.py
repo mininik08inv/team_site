@@ -34,17 +34,45 @@ def team_detail(request):
 
 def achievements(request):
     achievements = Achievement.objects.all()
-    victories = len(achievements.filter(final_place=1))
-    second_place = len(achievements.filter(final_place=2))
-    third_place = len(achievements.filter(final_place=3))
-    return render(request, 'team/achievements.html', {'achievements': achievements,
-                                                      'victories': victories, 'second_place': second_place,
-                                                      'third_place': third_place})
+
+    # Фильтрация по году
+    year = request.GET.get('year')
+    if year:
+        achievements = achievements.filter(data_event__year=year)
+
+    # Фильтрация по городу
+    city = request.GET.get('city')
+    if city:
+        achievements = achievements.filter(city=city)
+
+    # Фильтрация по названию турнира
+    tournament_name = request.GET.get('tournament_name')
+    if tournament_name:
+        achievements = achievements.filter(tournament_name=tournament_name)
+
+    # Уникальные значения для фильтров
+    cities = Achievement.objects.values_list('city', flat=True).distinct()
+    tournaments = Achievement.objects.values_list('tournament_name', flat=True).distinct()
+
+    # Статистика
+    second_place = achievements.filter(final_place=2).count()
+    victories = achievements.filter(final_place=1).count()
+    third_place = achievements.filter(final_place=3).count()
+
+    context = {
+        'achievements': achievements,
+        'cities': cities,
+        'tournaments': tournaments,
+        'second_place': second_place,
+        'victories': victories,
+        'third_place': third_place,
+    }
+    return render(request, 'team/achievements.html', context)
 
 
-def achievement_list(request):
-    achievements = Achievement.objects.all()
-    return render(request, 'achievements/achievement_list.html', {'achievements': achievements})
+def achievement_detail(request, pk):
+    achievement = get_object_or_404(Achievement, pk=pk)
+    return render(request, 'team/achievement_detail.html', {'achievement': achievement})
 
 
 def player_detail(request, player_id):

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                {% if achievement.image %}
+                <img src="{{ achievement.image.url }}" class="card-img-top" alt="{{ achievement.name }}">
+                {% else %}
+                <img src="{% static 'images/default_achievement.jpg' %}" class="card-img-top" alt="Default Image">
+                {% endif %}
+                <div class="card-body">
+                    <h1 class="card-title text-center">{{ achievement.name }}</h1>
+                    <p class="card-text"><strong>Город:</strong> {{achievement.city}}</p>
+                    <p class="card-text"><strong>Дата события:</strong> {{achievement.data_event}}</p>
+                    <p class="card-text"><strong>Описание:</strong> {{achievement.description|default:"Описание отсутствует"}}</p>
+                    <p class="card-text"><strong>Итоговое место:</strong> {{achievement.final_place}}</p>
+                    <p class="card-text"><strong>Название турнира:</strong> {{achievement.tournament_name}}</p>
+                    <p class="card-text"><strong>Количество участников:</strong> {{achievement.participants_count}}
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'achievements' %}" class="btn btn-primary">Назад к списку достижений</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

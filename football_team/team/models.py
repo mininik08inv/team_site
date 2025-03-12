@@ -34,6 +34,9 @@ class Achievement(models.Model):
         verbose_name = "Достижение"
         verbose_name_plural = "Достижения"
 
+    def get_absolute_url(self):
+        return reverse('achievement_detail', kwargs={'pk': self.pk})
+
 
 class TeamPhoto(models.Model):
     image = models.ImageField(upload_to='team_photos/', verbose_name="Фото команды")
