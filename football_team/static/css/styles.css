@@ -501,3 +501,38 @@ li {
 .matchboard--hasXg {
     border-radius: 4px 4px 0 0
 }
+
+/* match.css */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.list-group-item {
+    border: none;
+    padding: 0.75rem 1.25rem;
+}
+
+.display-4 {
+    font-weight: bold;
+    color: #e3000f; /* Красный цвет для счета */
+}
+
+.btn-primary {
+    background-color: #e3000f;
+    border-color: #e3000f;
+    padding: 0.5rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+    background-color: #c0000d;
+    border-color: #c0000d;
+}

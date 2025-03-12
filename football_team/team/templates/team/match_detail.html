@@ -2,37 +2,65 @@
 {% load static %}
 
 {% block content %}
-<div style="margin-top: 20px;">
-    <div class="match-summary__state-matchboard ">
-        <div class="matchboard"><span class="matchboard__card"><span
-                class="matchboard__card-game--winner matchboard__card-game">{{ match.first_team }}</span></span><span
-                class="matchboard__hyphen"></span><span class="matchboard__card matchboard__card--no_margin"><span
-                class="matchboard__card-game">{{ match.second_team }}</span></span></div>
-
-        <div class="matchboard"><span class="matchboard__card"><span
-                class="matchboard__card-game--winner matchboard__card-game">{{ match.goals_scored }}</span></span><span
-                class="matchboard__hyphen"></span><span class="matchboard__card matchboard__card--no_margin"><span
-                class="matchboard__card-game">{{ match.goals_conceded }}</span></span></div>
-    </div>
-</div>
-<p>Статус игры: {{ match.status }}</p>
-<p>Дата: {{ match.date }}</p>
-<p>Город: {{ match.city }}</p>
-<p>Турнир: {{ match.tournament }}</p>
-<p>Стадия турнира: {{ match.stage }}</p>
-{% if match.description %}
-<p>Комментарий к матчу: {{ match.description }}</p>
-{% endif %}
-<h2>Голы</h2>
-<ul>
-    {% for goal in match.goal_set.all %}
-    <div class="col">
-        <a href="{% url 'player_detail' goal.player.id %}">{{ goal.player }}</a> - {{ goal.goals }}
+<div class="container mt-4">
+    <!-- Заголовок матча -->
+    <div class="text-center mb-4">
+        <h1>Результат матча</h1>
+        <h2>{{ match.first_team }} vs {{ match.second_team }}</h2>
     </div>
 
-    {% endfor %}
-</ul>
-<div class="card-footer text-center">
-    <a href="{% url 'match_list' %}" class="btn btn-primary">Назад к списку матчей</a>
+    <!-- Основная информация о матче -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <h3>{{ match.first_team }}</h3>
+                    <p class="display-4">{{ match.goals_scored }}</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h3>{{ match.second_team }}</h3>
+                    <p class="display-4">{{ match.goals_conceded }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Детали матча -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Детали матча</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Статус игры:</strong> {{ match.status }}</li>
+                <li class="list-group-item"><strong>Дата:</strong> {{ match.date }}</li>
+                <li class="list-group-item"><strong>Город:</strong> {{ match.city }}</li>
+                <li class="list-group-item"><strong>Турнир:</strong> {{ match.tournament }}</li>
+                <li class="list-group-item"><strong>Стадия турнира:</strong> {{ match.stage }}</li>
+                {% if match.description %}
+                <li class="list-group-item"><strong>Комментарий к матчу:</strong> {{ match.description }}</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Список голов -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Голы</h4>
+            <ul class="list-group">
+                {% for goal in match.goal_set.all %}
+                <li class="list-group-item">
+                    <a href="{% url 'player_detail' goal.player.id %}" class="text-decoration-none">{{ goal.player }}</a> - {{ goal.goals }} гол(ов)
+                </li>
+                {% empty %}
+                <li class="list-group-item">Голов в этом матче не было.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Кнопка "Назад" -->
+    <div class="text-center">
+        <a href="{% url 'match_list' %}" class="btn btn-primary">Назад к списку матчей</a>
+    </div>
 </div>
 {% endblock %}
