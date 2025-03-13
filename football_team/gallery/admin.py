@@ -29,6 +29,13 @@ class AlbumAdmin(SortableAdminMixin, admin.ModelAdmin):
     filter_horizontal = ('images',)
     raw_id_fields = ('highlight',)
 
+    def delete_queryset(self, request, queryset):
+        # Удаляем файлы для каждой записи
+        for obj in queryset:
+            obj.delete()
+        # Вызываем родительский метод для завершения удаления
+        super().delete_queryset(request, queryset)
+
 
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Album, AlbumAdmin)

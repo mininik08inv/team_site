@@ -12,8 +12,11 @@ from datetime import datetime
 import os
 
 
-class Image(models.Model):
+def custom_upload_to(instance, filename):
+    return os.path.join(settings.GALLERY_IMAGES_PATH, filename)
 
+
+class Image(models.Model):
     data = models.ImageField(upload_to=settings.GALLERY_IMAGES_PATH)
     data_thumbnail = ImageSpecField(
         source='data',
@@ -98,6 +101,28 @@ class Image(models.Model):
     def __str__(self):
         return self.title
 
+    def delete(self, *args, **kwargs):
+        # Удаляем основной файл
+        if self.data:
+            file_path = os.path.join(settings.MEDIA_ROOT, self.data.name)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+
+        # Удаляем миниатюру (если она существует)
+        if hasattr(self, 'data_thumbnail'):
+            thumbnail_path = os.path.join(settings.MEDIA_ROOT, self.data_thumbnail.name)
+            if os.path.exists(thumbnail_path):
+                os.remove(thumbnail_path)
+
+        # Удаляем превью (если оно существует)
+        if hasattr(self, 'data_preview'):
+            preview_path = os.path.join(settings.MEDIA_ROOT, self.data_preview.name)
+            if os.path.exists(preview_path):
+                os.remove(preview_path)
+
+        # Удаляем запись из базы данных
+        super().delete(*args, **kwargs)
+
 
 class Album(models.Model):
     title = models.CharField(max_length=250)
@@ -120,7 +145,7 @@ class Album(models.Model):
     @property
     def display_highlight(self):
         """ User selectable thumbnail for the album """
-        if self.highlight :
+        if self.highlight:
             image = self.highlight
         # if there is no highlight but there are images in the album, use the first
         else:
