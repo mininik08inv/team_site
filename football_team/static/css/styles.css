@@ -536,3 +536,65 @@ li {
     background-color: #c0000d;
     border-color: #c0000d;
 }
+
+/* Стили результата матча в зависимости от статуса*/
+.match-victory {
+    background-color: green; /* Зеленый фон для победы */
+    color: white; /* Белый текст */
+}
+
+.match-draw {
+    background-color: blue; /* Синий фон для ничьи */
+    color: white; /* Белый текст */
+}
+
+.match-defeat {
+    background-color: red; /* Красный фон для поражения */
+    color: white; /* Белый текст */
+}
+
+.match-victory a {
+    color: white; /* Белый текст для ссылок внутри карточек */
+    text-decoration: none; /* Убрать подчеркивание ссылок */
+}
+
+.match-draw a {
+    color: white; /* Белый текст для ссылок внутри карточек */
+    text-decoration: none; /* Убрать подчеркивание ссылок */
+}
+
+.match-defeat a {
+    color: white; /* Белый текст для ссылок внутри карточек */
+    text-decoration: none; /* Убрать подчеркивание ссылок */
+}
+
+
+ul {
+    padding-left: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.col {
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.card {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}

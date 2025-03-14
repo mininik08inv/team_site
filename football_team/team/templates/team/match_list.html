@@ -96,26 +96,30 @@
 
     <br>
 
-    <!--Список матчей-->
+    <!-- Список матчей -->
     <ul style="text-align: center;">
         {% for match in matches %}
         <li class="border-bottom">
-            <a href="{% url 'match_detail' match.id %}">
-                <div class="container text-center">
-                    <div class="row">
-                        <div class="col text-center">
-                            {{ match.first_team }}
+            <div class="col">
+                <div class="card h-100 {% if match.status == 'Победа' %}match-victory{% elif match.status == 'Ничья' %}match-draw{% elif match.status == 'Поражение' %}match-defeat{% endif %}">
+                    <a href="{% url 'match_detail' match.id %}">
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col text-center">
+                                    {{ match.first_team }}
+                                </div>
+                                <div class="col text-center">
+                                    <div class="h3">{{ match.goals_scored }} : {{ match.goals_conceded }}</div>
+                                    <div class="small">{{ match.date|date:"d:m:y" }}</div>
+                                </div>
+                                <div class="col text-center">
+                                    {{ match.second_team }}
+                                </div>
+                            </div>
                         </div>
-                        <div class="col text-center">
-                            <div class="h3">{{ match.goals_scored }} : {{ match.goals_conceded }}</div>
-                            <div class="small">{{ match.date|date:"d:m:y" }}</div>
-                        </div>
-                        <div class="col text-center">
-                            {{ match.second_team }}
-                        </div>
-                    </div>
+                    </a>
                 </div>
-            </a>
+            </div>
         </li>
         {% endfor %}
     </ul>
