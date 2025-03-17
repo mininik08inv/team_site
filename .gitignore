@@ -1,4 +1,4 @@
-.env
+football_team/.env
 .venv
 .idea/
 .vscode

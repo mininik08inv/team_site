@@ -5,6 +5,7 @@ from .models import Team, Player, Coach, Match, Achievement
 
 
 def team_detail(request):
+    print('TEST access')
     team = Team.objects.first()  # Получаем первую команду
     if not team:
         return render(request, 'team/team_detail.html',
