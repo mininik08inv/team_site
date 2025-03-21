@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum
 from datetime import datetime
 from .models import Team, Player, Coach, Match, Achievement
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def team_detail(request):
@@ -121,8 +122,19 @@ def match_list(request):
     # Получение списка оппонентов
     opponents = Match.objects.values_list('second_team', flat=True).distinct()
 
+    # Пагинация
+    paginator = Paginator(matches, 10)
+    page_number = request.GET.get('page', 1)
+    try:
+        matches = paginator.page(page_number)
+    except PageNotAnInteger:
+        matches = paginator.page(1)
+    except EmptyPage:
+        matches = paginator.page(paginator.num_pages)
+
     context = {
         'matches': matches,
+        'page': matches,  # Передаем объект страницы для пагинации
         'total_matches': total_matches,
         'wins': wins,
         'draws': draws,
