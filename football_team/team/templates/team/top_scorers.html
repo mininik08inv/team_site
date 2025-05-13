@@ -5,6 +5,28 @@
 <!-- Топ 10 бомбардиров -->
 <div class="container mt-4">
     <h2 class="text-center">ТОП 10 БОМБАРДИРОВ</h2>
+    <!--    Фильтр по годам-->
+    <!-- Фильтр по годам -->
+    <form method="get">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <label for="season" class="form-label">Сезон:</label>
+                <select class="form-select" id="season" name="season">
+                    <option value="">Все сезоны</option>
+                    {% for year in available_years %}
+                    <option value="{{ year }}"
+                            {% if selected_season %} {{selected_season}} {% endif %}>
+                    {{ year }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary mt-3">Применить</button>
+            </div>
+        </div>
+    </form>
+    <!--    Фильтр по годам-->
     <div class="players-grid">
         {% for player in top_scorers %}
         <a href="{% url 'player_detail' player.id %}" class="player-card-link"> <!-- Вся карточка — это ссылка -->

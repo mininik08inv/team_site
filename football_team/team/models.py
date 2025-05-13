@@ -170,7 +170,7 @@ class Match(models.Model):
         ('1/4', '1/4'),
         ('Полуфинал', 'Полуфинал'),
         ('Финал', 'Финал'),
-        ]
+    ]
 
     STATUS_CHOICES = [
         ('Победа', 'Победа'),
@@ -187,10 +187,10 @@ class Match(models.Model):
     date = models.DateField(verbose_name="Дата")
     city = models.CharField(max_length=100, verbose_name="Город")
     tournament = models.CharField(max_length=100, verbose_name="Турнир")
-    stage = models.CharField(max_length=100, choices=STAGE_CHOICES, default='Первый круг', verbose_name="Стадия турнира")
+    stage = models.CharField(max_length=100, choices=STAGE_CHOICES, default='Первый круг',
+                             verbose_name="Стадия турнира")
     description = models.TextField(blank=True, verbose_name="Описание матча")
     players = models.ManyToManyField('Player', through='Goal')
-
 
     class Meta:
         verbose_name = "Матч"
@@ -212,7 +212,6 @@ class Goal(models.Model):
     class Meta:
         verbose_name = "Гол игрока"
         verbose_name_plural = "Голы игрока"
-
 
 # class PhotoOfMatch(models.Model):
 #     album = models.ForeignKey('PhotoAlbum', related_name='photos', on_delete=models.CASCADE)

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+<title>Прошедшие матчи</title>
 {% block content %}
 
 <!-- Статистика -->
@@ -54,93 +54,79 @@
     </div>
     <br>
 
-    <!--Фильтры-->
-    <form method="get" class="">
-        <div class="row">
-            <div class="col-6">
-                <label for="start_date">Матчи с:</label>
-                <input type="date" class="form-control" id="start_date" name="start_date">
-            </div>
-            <div class="col-6">
-                <label for="end_date">до:</label>
-                <input type="date" class="form-control" id="end_date" name="end_date">
-            </div>
+   <!-- Фильтры -->
+<form method="get" class="">
+    <div class="row">
+        <div class="col-6">
+            <label for="start_date">Матчи с:</label>
+            <input type="date" class="form-control" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
         </div>
-        <div class="row">
-            <div class="col-6">
-                <label for="status">Статус:</label>
-                <select class="form-control" id="status" name="status">
-                    <option value="">Все</option>
-                    <option value="Победа">Победа</option>
-                    <option value="Ничья">Ничья</option>
-                    <option value="Поражение">Поражение</option>
-                </select>
-            </div>
-            <div class="col-6">
-                <label for="opponent">Соперник:</label>
-                <select class="form-control" id="opponent" name="opponent">
-                    <option value="">Все</option>
-                    {% for opponent in opponents %}
-                    <option value="{{ opponent }}">{{ opponent }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Применить фильтры</button>
-                    <a href="{% url 'match_list' %}" class="btn btn-secondary">Сбросить</a>
-                </div>
-            </div>
+        <div class="col-6">
+            <label for="end_date">до:</label>
+            <input type="date" class="form-control" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
         </div>
-    </form>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label for="status">Статус:</label>
+            <select class="form-control" id="status" name="status">
+                <option value="">Все</option>
+                <option value="Победа" {% if request.GET.status == "Победа" %}selected{% endif %}>Победа</option>
+                <option value="Ничья" {% if request.GET.status == "Ничья" %}selected{% endif %}>Ничья</option>
+                <option value="Поражение" {% if request.GET.status == "Поражение" %}selected{% endif %}>Поражение</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label for="opponent">Соперник:</label>
+            <select class="form-control" id="opponent" name="opponent">
+                <option value="">Все</option>
+                {% for opponent in opponents %}
+                <option value="{{ opponent }}" {% if request.GET.opponent == opponent %}selected{% endif %}>{{ opponent }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Применить фильтры</button>
+            <a href="{% url 'match_list' %}" class="btn btn-secondary">Сбросить</a>
+        </div>
+    </div>
+</form>
 
     <br>
 
     <!-- Список матчей -->
-    <!-- верхние кнопки пагинации   -->
+    <!-- верхние кнопки пагинации -->
     <div style="text-align: center;">
         <nav class="pagination-outer" aria-label="Page navigation">
             <ul class="pagination pagination-sm justify-content-center">
-                <!-- Кнопка "Previous" -->
-                {% if page.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
+                {% if matches.has_previous %}
+                <li class="page-item active">
+                    <a class="page-link"
+                       href="?page=1&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">&laquo;</a>
                 </li>
                 {% endif %}
 
                 <!-- Номера страниц -->
-                {% for num in page.paginator.page_range %}
-                {% if page.number == num %}
+                {% for num in matches.paginator.page_range %}
+                {% if matches.number == num %}
                 <li class="page-item active">
-                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    <a class="page-link"
+                       href="?page={{ num }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">{{ num }}</a>
                 </li>
-                {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
+                {% elif num > matches.number|add:'-3' and num < matches.number|add:'3' %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    <a class="page-link"
+                       href="?page={{ num }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">{{ num }}</a>
                 </li>
                 {% endif %}
                 {% endfor %}
 
-                <!-- Кнопка "Next" -->
-                {% if page.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
+                {% if matches.has_next %}
+                <li class="page-item active">
+                    <a class="page-link"
+                       href="?page={{ matches.paginator.num_pages }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">&raquo;</a>
                 </li>
                 {% endif %}
             </ul>
@@ -172,50 +158,36 @@
         </li>
         {% endfor %}
     </ul>
-    <!-- нижние кнопки пагинации   -->
+    <!-- верхние кнопки пагинации -->
     <div style="text-align: center;">
-        <nav aria-label="Page navigation">
-            <ul class="pagination pagination-sm justify-content-center" style="text-align: center;">
-                <!-- Кнопка "Previous" -->
-                {% if page.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
+        <nav class="pagination-outer" aria-label="Page navigation">
+            <ul class="pagination pagination-sm justify-content-center">
+                {% if matches.has_previous %}
+                <li class="page-item active">
+                    <a class="page-link"
+                       href="?page=1&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">&laquo;</a>
                 </li>
                 {% endif %}
 
                 <!-- Номера страниц -->
-                {% for num in page.paginator.page_range %}
-                {% if page.number == num %}
+                {% for num in matches.paginator.page_range %}
+                {% if matches.number == num %}
                 <li class="page-item active">
-                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    <a class="page-link"
+                       href="?page={{ num }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">{{ num }}</a>
                 </li>
-                {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
+                {% elif num > matches.number|add:'-3' and num < matches.number|add:'3' %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    <a class="page-link"
+                       href="?page={{ num }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">{{ num }}</a>
                 </li>
                 {% endif %}
                 {% endfor %}
 
-                <!-- Кнопка "Next" -->
-                {% if page.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
+                {% if matches.has_next %}
+                <li class="page-item active">
+                    <a class="page-link"
+                       href="?page={{ matches.paginator.num_pages }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">&raquo;</a>
                 </li>
                 {% endif %}
             </ul>
