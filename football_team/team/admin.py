@@ -15,7 +15,8 @@ class AchievementAdmin(admin.ModelAdmin):
 
 @admin.register(TeamPhoto)
 class TeamPhotoAdmin(admin.ModelAdmin):
-    list_display = ('short_description',)
+    list_display = ('short_description', 'team')
+    list_display_links = ('short_description', 'team')
 
     def short_description(self, obj):
         return Truncator(obj.description).chars(50)
@@ -25,7 +26,8 @@ class TeamPhotoAdmin(admin.ModelAdmin):
 
 @admin.register(TeamVideo)
 class TeamVideoAdmin(admin.ModelAdmin):
-    list_display = ('short_description',)
+    list_display = ('short_description', 'team')
+    list_display_links = ('short_description', 'team')
 
     def short_description(self, obj):
         return Truncator(obj.description).chars(50)
@@ -35,13 +37,14 @@ class TeamVideoAdmin(admin.ModelAdmin):
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'position', 'last_modified')
+    list_display = ('last_name', 'first_name', 'position', 'in_the_team', 'last_modified')
     list_display_links = ('last_name', 'first_name')
 
 
 @admin.register(Photo)
-class VideoAdmin(admin.ModelAdmin):
+class PhotoAdmin(admin.ModelAdmin):
     list_display = ('short_description', 'player')
+    list_display_links = ('short_description', 'player')
 
     def short_description(self, obj):
         return Truncator(obj.description).chars(30)
@@ -52,6 +55,7 @@ class VideoAdmin(admin.ModelAdmin):
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     list_display = ('short_description', 'player')
+    list_display_links = ('short_description', 'player')
 
     def short_description(self, obj):
         return Truncator(obj.description).chars(30)
@@ -83,3 +87,4 @@ class MatchAdmin(admin.ModelAdmin):
 @admin.register(Goal)
 class GoalAdmin(admin.ModelAdmin):
     list_display = ('match', 'player', 'goals')
+    list_display_links = ('match', 'player', 'goals')
