@@ -695,3 +695,25 @@ li {
         margin: 0 0 10px;
     }
 }
+
+/* Цвет карточки достижения в зависимости от места*/
+
+.achievement-first-place {
+    background-color: #FFD700; /* Зеленый фон для победы */
+    color: black; /* Белый текст */
+}
+
+.achievement-second-place {
+    background-color: #d6d6d6;
+    color: black;
+}
+
+.achievement-third-place {
+    background-color: #cd7f32;
+    color: white;
+}
+
+.card.achievement-first-place {
+    background-color: #FFD700;
+    color: black;
+}

@@ -70,7 +70,7 @@
     <div class="row">
         {% for achievement in achievements %}
         <div class="col-md-4 mb-4">
-            <div class="card h-100">
+            <div class="card h-100 {% if achievement.final_place == 1 %}achievement-first-place{% elif achievement.final_place == 2 %}achievement-second-place{% elif achievement.final_place == 3 %}achievement-third-place{% endif %}">
                 <a href="{% url 'achievement_detail' achievement.id %}" style="text-decoration: none; color: inherit;">
                     <div class="card-body">
                         <div class="container text-center">
