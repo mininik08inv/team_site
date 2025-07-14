@@ -1,0 +1,1040 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-03-03T13:14:23.192Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "team_photos/акф.jpg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-03-03T13:14:49.810Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "videos/Luchwij_gol_v_istorii_ligi_chempionov-world79.spcs.bio.mp4",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-03-03T13:14:52.199Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "синие",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-03-03T13:19:08.859Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "Михаил Апаркин",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-03-03T13:39:32.196Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "videos/Luchwij_gol_v_istorii_ligi_chempionov-world79_BHvWVNY.spcs.bio.mp4",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-03-03T13:39:36.820Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "Михаил Апаркин",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u043e\\u043f\\u043e\\u043b\\u043d\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0435 \\u0432\\u0438\\u0434\\u0435\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-03-03T13:55:31.005Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "синие",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-03-03T14:07:30.434Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "team_photos/awards.jpg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-03-03T14:07:32.751Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "синие",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Photos\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-03-03T14:09:58.684Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "team_photos/awards.jpg",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-03-03T14:25:18.317Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "Павел Проскуряков Михайлович",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-03-03T14:27:20.380Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "3",
+    "object_repr": "Валерий Пчелинцев Витальевич",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-03-04T07:46:48.767Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "Victor Goalkipper ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-03-04T07:49:28.762Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "videos/Ibragimovich_zabil_luchwij_gol_v_istorii_futbola-world79.spcs.bio.mp4",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-03-04T07:50:13.391Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "photos/i.webp",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-03-04T07:50:17.063Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "Victor Goalkipper ",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0414\\u043e\\u043f\\u043e\\u043b\\u043d\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0435 \\u0444\\u043e\\u0442\\u043e\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-03-04T07:55:38.370Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "3",
+    "object_repr": "test testttt ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-03-04T08:17:11.573Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "Павел Проскуряков Михайлович",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0442\\u0440\\u0435\\u043d\\u0435\\u0440\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-03-04T09:20:41.639Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Синие",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-03-04T09:21:24.336Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "4",
+    "object_repr": "Конкурент Миши ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-03-04T09:25:02.644Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Синие",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b\"]}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 4,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 4,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 4,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 4,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 5,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 6,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add Фото",
+    "content_type": 7,
+    "codename": "add_photo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change Фото",
+    "content_type": 7,
+    "codename": "change_photo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete Фото",
+    "content_type": 7,
+    "codename": "delete_photo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view Фото",
+    "content_type": 7,
+    "codename": "view_photo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add Команда",
+    "content_type": 8,
+    "codename": "add_team"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change Команда",
+    "content_type": 8,
+    "codename": "change_team"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete Команда",
+    "content_type": 8,
+    "codename": "delete_team"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view Команда",
+    "content_type": 8,
+    "codename": "view_team"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add Фото команды",
+    "content_type": 9,
+    "codename": "add_teamphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change Фото команды",
+    "content_type": 9,
+    "codename": "change_teamphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete Фото команды",
+    "content_type": 9,
+    "codename": "delete_teamphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view Фото команды",
+    "content_type": 9,
+    "codename": "view_teamphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add Видео",
+    "content_type": 10,
+    "codename": "add_teamvideo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change Видео",
+    "content_type": 10,
+    "codename": "change_teamvideo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete Видео",
+    "content_type": 10,
+    "codename": "delete_teamvideo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view Видео",
+    "content_type": 10,
+    "codename": "view_teamvideo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add Игрок",
+    "content_type": 11,
+    "codename": "add_player"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change Игрок",
+    "content_type": 11,
+    "codename": "change_player"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete Игрок",
+    "content_type": 11,
+    "codename": "delete_player"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view Игрок",
+    "content_type": 11,
+    "codename": "view_player"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add Тренер",
+    "content_type": 12,
+    "codename": "add_coach"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change Тренер",
+    "content_type": 12,
+    "codename": "change_coach"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete Тренер",
+    "content_type": 12,
+    "codename": "delete_coach"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view Тренер",
+    "content_type": 12,
+    "codename": "view_coach"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add Видео",
+    "content_type": 13,
+    "codename": "add_video"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change Видео",
+    "content_type": 13,
+    "codename": "change_video"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete Видео",
+    "content_type": 13,
+    "codename": "delete_video"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view Видео",
+    "content_type": 13,
+    "codename": "view_video"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$7dmOK39ZJJwAfVMvn488HS$7IqPaiDj7nukAhYKOzKszmnB3mpwXSDHe+HF6XvXHAM=",
+    "last_login": "2025-03-03T13:09:01.573Z",
+    "is_superuser": true,
+    "username": "football",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-03-03T13:08:59.039Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "team",
+    "model": "photo"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "team",
+    "model": "team"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "team",
+    "model": "teamphoto"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "team",
+    "model": "teamvideo"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "team",
+    "model": "player"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "team",
+    "model": "coach"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "team",
+    "model": "video"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "s7cu740da03d189x5pvhvx6b9y2fqjk8",
+  "fields": {
+    "session_data": ".eJxVjEEOgjAQRe_StWmmQ1sYl-45QzPtjIIaSCisjHdXEha6_e-9_zKJt3VIW9UljWLOxpnT75a5PHTagdx5us22zNO6jNnuij1otf0s-rwc7t_BwHX41uzQYdeykpaW8doJRYQoQJpdbIkQWTIEhkChNB6gyyg-em2CLw7M-wPRkTcC:1tp5XZ:cKarF8fXbEs2IMwefKFx80fiAjPtXMZINVdI6LzeCC8",
+    "expire_date": "2025-03-17T13:09:01.578Z"
+  }
+},
+{
+  "model": "team.team",
+  "pk": 1,
+  "fields": {
+    "name": "Синие",
+    "description": "Добро пожаловать на сайт футбольной команды 'Академия футбола синие'! Мы - команда футбольной академии 2013 г.р. Наша миссия - развивать любовь к футболу у детей и помогать им достичь своих потенциальных возможностей на поле. Мы верим, что футбол - это не только игра, но и способ обучения, развития и роста. Мы предлагаем детям возможность играть в футбол, учиться и развиваться в дружественной и поддерживаемой среде. Мы гордимся нашими достижениями и продолжаем работать над тем, чтобы сделать 'Академию футбола Синие' лучшей командой в нашем регионе. Присоединяйтесь к нам и станьте частью нашей команды!",
+    "matches_played": 0,
+    "matches_won": 0,
+    "matches_drawn": 0,
+    "matches_lost": 0,
+    "photos": [
+      1,
+      2
+    ],
+    "videos": [
+      1
+    ]
+  }
+},
+{
+  "model": "team.teamphoto",
+  "pk": 1,
+  "fields": {
+    "image": "team_photos/акф.jpg",
+    "description": "Красавчики"
+  }
+},
+{
+  "model": "team.teamphoto",
+  "pk": 2,
+  "fields": {
+    "image": "team_photos/awards.jpg",
+    "description": "Наши трофеи!"
+  }
+},
+{
+  "model": "team.teamvideo",
+  "pk": 1,
+  "fields": {
+    "video": "videos/Luchwij_gol_v_istorii_ligi_chempionov-world79.spcs.bio.mp4",
+    "description": ""
+  }
+},
+{
+  "model": "team.player",
+  "pk": 1,
+  "fields": {
+    "first_name": "Михаил",
+    "last_name": "Апаркин",
+    "patronymic": "",
+    "date_of_birth": "2013-03-03",
+    "main_photo": "player_photos/миша_апаркин.jpg",
+    "team": 1,
+    "position": "MF",
+    "last_modified": "2025-03-03T13:39:36.815Z",
+    "additional_photos": [],
+    "additional_videos": [
+      1
+    ]
+  }
+},
+{
+  "model": "team.player",
+  "pk": 2,
+  "fields": {
+    "first_name": "Victor",
+    "last_name": "Goalkipper",
+    "patronymic": "",
+    "date_of_birth": "2013-03-04",
+    "main_photo": "player_photos/вася_пуп.jpg",
+    "team": 1,
+    "position": "GK",
+    "last_modified": "2025-03-04T07:50:17.046Z",
+    "additional_photos": [
+      1
+    ],
+    "additional_videos": []
+  }
+},
+{
+  "model": "team.player",
+  "pk": 3,
+  "fields": {
+    "first_name": "test",
+    "last_name": "testttt",
+    "patronymic": "",
+    "date_of_birth": "2025-03-04",
+    "main_photo": "",
+    "team": 1,
+    "position": "DF",
+    "last_modified": "2025-03-04T07:55:38.304Z",
+    "additional_photos": [],
+    "additional_videos": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "team.player",
+  "pk": 4,
+  "fields": {
+    "first_name": "Конкурент",
+    "last_name": "Миши",
+    "patronymic": "",
+    "date_of_birth": "2025-03-04",
+    "main_photo": "",
+    "team": 1,
+    "position": "MF",
+    "last_modified": "2025-03-04T09:21:24.334Z",
+    "additional_photos": [],
+    "additional_videos": []
+  }
+},
+{
+  "model": "team.coach",
+  "pk": 2,
+  "fields": {
+    "first_name": "Павел",
+    "last_name": "Проскуряков",
+    "patronymic": "Михайлович",
+    "photo": "",
+    "date_of_birth": null,
+    "start_of_coaching_career": null,
+    "team": 1
+  }
+},
+{
+  "model": "team.coach",
+  "pk": 3,
+  "fields": {
+    "first_name": "Валерий",
+    "last_name": "Пчелинцев",
+    "patronymic": "Витальевич",
+    "photo": "coach_photos/Пчелинцев_Валерий_Витальевич.jpeg",
+    "date_of_birth": null,
+    "start_of_coaching_career": null,
+    "team": 1
+  }
+},
+{
+  "model": "team.photo",
+  "pk": 1,
+  "fields": {
+    "image": "photos/i.webp",
+    "description": "",
+    "player": 2
+  }
+},
+{
+  "model": "team.video",
+  "pk": 1,
+  "fields": {
+    "video": "videos/Luchwij_gol_v_istorii_ligi_chempionov-world79_BHvWVNY.spcs.bio.mp4",
+    "description": "super",
+    "player": 1
+  }
+},
+{
+  "model": "team.video",
+  "pk": 2,
+  "fields": {
+    "video": "videos/Ibragimovich_zabil_luchwij_gol_v_istorii_futbola-world79.spcs.bio.mp4",
+    "description": "IbrA",
+    "player": 2
+  }
+}
+]
