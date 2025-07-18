@@ -26,11 +26,11 @@ jobs:
 
     - name: Update .env file
       run: |
-       ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
-       cat > $PROJECT_DIR/.env << "EOF"
-       ${{ secrets.ENV_FILE }}
-       EOF
-    '
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
+          cat > $PROJECT_DIR/.env << "EOF"
+          ${{ secrets.ENV_FILE }}
+          EOF
+        '
 
     - name: Execute deployment script
       run: |
