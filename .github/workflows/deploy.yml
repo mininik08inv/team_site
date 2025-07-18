@@ -1,0 +1,38 @@
+name: Django Deploy
+
+on:
+  push:
+    branches: [ main ]  # Триггер на пуш в main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Copy files via SSH
+        run: |
+          rsync -avz --delete \
+            --exclude='.git/' \
+            --exclude='.env' \
+            --exclude='__pycache__/' \
+            ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PROJECT_DIR }}
+
+      - name: Run Django commands
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            cd ${{ secrets.PROJECT_DIR }}
+            echo "${{ secrets.ENV_FILE }}" > .env
+            scp .env ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PROJECT_DIR }}/.env
+            source venv/bin/activate  # Если используете venv
+            pip install -r requirements.txt
+            python manage.py migrate
+            python manage.py collectstatic --noinput
+            sudo systemctl restart gunicorn  # Или ваш сервис Django
+          "
