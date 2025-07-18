@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Update .env file
-      run: |
-      ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "
-      echo '${{ secrets.ENV_FILE }}' > $PROJECT_DIR/.env
-    "
     - name: Checkout code
       uses: actions/checkout@v4
 
@@ -25,6 +20,12 @@ jobs:
       uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Update .env file
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "
+          echo '${{ secrets.ENV_FILE }}' > $PROJECT_DIR/.env
+        "
 
     - name: Execute deployment script
       run: |
