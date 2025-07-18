@@ -3,6 +3,8 @@ name: Deploy Django to VPS
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ "master" ]
 
 env:
   PROJECT_DIR: /var/www/team_site/football_team
