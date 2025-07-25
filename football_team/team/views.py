@@ -97,6 +97,13 @@ def player_detail(request, player_id):
         'title': player.last_name,
     })
 
+def coach_detail(request, coach_id):
+    coach = get_object_or_404(Coach, id=coach_id)
+
+    return render(request, 'team/coach_detail.html', {
+        'coach': coach,
+        'title': coach.last_name,
+    })
 
 class MatchListView(ListView):
     model = Match
