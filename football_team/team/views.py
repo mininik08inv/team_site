@@ -209,7 +209,7 @@ def match_list(request):
 
 
     # Пагинация
-    paginator = Paginator(matches, 6)  # 10 записей на страницу
+    paginator = Paginator(matches, 10)  # 10 записей на страницу
     page_number = request.GET.get('page', 1)
     try:
         matches = paginator.page(page_number)
