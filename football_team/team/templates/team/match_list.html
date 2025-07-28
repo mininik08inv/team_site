@@ -85,6 +85,15 @@
                 {% endfor %}
             </select>
         </div>
+        <div class="col-6">
+            <label for="opponent">Турнир:</label>
+            <select class="form-control" id="tournament" name="tournament">
+                <option value="">Все</option>
+                {% for tournament in tournaments %}
+                <option value="{{ tournament }}" {% if request.GET.tournament == tournament %}selected{% endif %}>{{ tournament }}</option>
+                {% endfor %}
+            </select>
+        </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-12 text-center">
@@ -104,7 +113,7 @@
                 {% if matches.has_previous %}
                 <li class="page-item active">
                     <a class="page-link"
-                       href="?page=1&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">&laquo;</a>
+                       href="?page=1&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}&tournament={{ request.GET.tournament }}">&laquo;</a>
                 </li>
                 {% endif %}
 
@@ -113,12 +122,12 @@
                 {% if matches.number == num %}
                 <li class="page-item active">
                     <a class="page-link"
-                       href="?page={{ num }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">{{ num }}</a>
+                       href="?page={{ num }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}&tournament={{ request.GET.tournament }}">{{ num }}</a>
                 </li>
                 {% elif num > matches.number|add:'-3' and num < matches.number|add:'3' %}
                 <li class="page-item">
                     <a class="page-link"
-                       href="?page={{ num }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">{{ num }}</a>
+                       href="?page={{ num }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}&tournament={{ request.GET.tournament }}">{{ num }}</a>
                 </li>
                 {% endif %}
                 {% endfor %}
@@ -126,7 +135,7 @@
                 {% if matches.has_next %}
                 <li class="page-item active">
                     <a class="page-link"
-                       href="?page={{ matches.paginator.num_pages }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}">&raquo;</a>
+                       href="?page={{ matches.paginator.num_pages }}&start_date={{ request.GET.start_date }}&end_date={{ request.GET.end_date }}&status={{ request.GET.status }}&opponent={{ request.GET.opponent }}&tournament={{ request.GET.tournament }}">&raquo;</a>
                 </li>
                 {% endif %}
             </ul>
