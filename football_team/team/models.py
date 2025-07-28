@@ -139,6 +139,7 @@ class Video(models.Model):
     def __str__(self):
         return self.video.name
 
+# -------------------coaches----------------------------------
 
 class Coach(models.Model):
     last_name = models.CharField(max_length=100, verbose_name="Фамилия")
@@ -148,7 +149,8 @@ class Coach(models.Model):
     date_of_birth = models.DateField(blank=True, null=True, verbose_name="Дата рождения")
     start_of_coaching_career = models.DateField(blank=True, null=True,
                                                 verbose_name="Дата начала тренерской деятельности")
-    team = models.ForeignKey('Team', on_delete=models.CASCADE, verbose_name="Команда")
+    career = models.TextField(blank=True, null=True, verbose_name="Карьера")
+    team = models.ForeignKey('Team', null=True, blank=True, on_delete=models.CASCADE, verbose_name="Команда")
 
     class Meta:
         verbose_name = "Тренер"

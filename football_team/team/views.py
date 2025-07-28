@@ -1,13 +1,12 @@
+from django.db.models.functions import Lower
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum, Q
 from datetime import datetime, timezone
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
-from .forms import MatchFilterForm
 from .models import Team, Player, Coach, Match, Achievement
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
 
 
 def team_detail(request):
@@ -84,7 +83,10 @@ def achievement_detail(request, pk):
 
 
 def player_detail(request, player_id):
-    player = get_object_or_404(Player, id=player_id)
+    player = get_object_or_404(
+        Player.objects.prefetch_related('goal_set__match'),
+        id=player_id
+    )
     main_photo = player.main_photo  # Основное фото игрока
     additional_photos = player.additional_photos.all()  # Дополнительные фото
     additional_videos = player.additional_videos.all()  # Видео игрока
@@ -95,6 +97,15 @@ def player_detail(request, player_id):
         'additional_photos': additional_photos,
         'additional_videos': additional_videos,
         'title': player.last_name,
+    })
+
+
+def coach_detail(request, coach_id):
+    coach = get_object_or_404(Coach, id=coach_id)
+
+    return render(request, 'team/coach_detail.html', {
+        'coach': coach,
+        'title': coach.last_name,
     })
 
 
@@ -159,6 +170,7 @@ def match_list(request):
     end_date = request.GET.get('end_date')
     status = request.GET.get('status')
     opponent = request.GET.get('opponent')
+    tournament = request.GET.get('tournament')
 
     # Базовый запрос
     matches = Match.objects.all().order_by('-date')
@@ -174,6 +186,8 @@ def match_list(request):
         matches = matches.filter(status=status)
     if opponent:
         matches = matches.filter(second_team=opponent)
+    if tournament:
+        matches = matches.filter(tournament=tournament)
 
     # Агрегация данных
     total_matches = matches.count()
@@ -184,10 +198,18 @@ def match_list(request):
     total_goals_conceded = matches.aggregate(Sum('goals_conceded'))['goals_conceded__sum'] or 0
 
     # Получение списка оппонентов
-    opponents = Match.objects.values_list('second_team', flat=True).distinct()
+    opponents = Match.objects.annotate(
+        lower_name=Lower('second_team')
+    ).values_list('second_team', flat=True).distinct().order_by('lower_name')
+
+    # Получение списка турниров
+    tournaments = Match.objects.annotate(
+        lower_tournament=Lower('tournament')
+    ).values_list('tournament', flat=True).distinct().order_by('lower_tournament')
+
 
     # Пагинация
-    paginator = Paginator(matches, 10)  # 10 записей на страницу
+    paginator = Paginator(matches, 6)  # 10 записей на страницу
     page_number = request.GET.get('page', 1)
     try:
         matches = paginator.page(page_number)
@@ -206,10 +228,11 @@ def match_list(request):
         'total_goals_scored': total_goals_scored,
         'total_goals_conceded': total_goals_conceded,
         'opponents': opponents,
+        'tournament': tournament,
         'start_date': start_date,
         'end_date': end_date,
         'status': status,
-        'opponent': opponent,
+        'tournaments': tournaments,
         'title': 'Прошедшие матчи',
     }
 
@@ -220,10 +243,6 @@ def match_detail(request, match_id):
     match = get_object_or_404(Match, pk=match_id)
     return render(request, 'team/match_detail.html',
                   {'match': match, 'title': match.first_team + '-' + match.second_team, })
-
-
-from django.db.models import Sum, Q
-from datetime import datetime
 
 
 def top_scorers(request):

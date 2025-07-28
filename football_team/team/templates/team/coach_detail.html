@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Основное фото тренера -->
+        <div class="col-md-4">
+            <div class="card">
+                {% if coach.photo %}
+                <img src="{{ coach.photo.url }}" alt="{{ coach.name }}" class="card-img-top">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center">
+                    <img src="{% static 'img/default_image.jpg' %}" alt="" width="280">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Информация об тренере -->
+        <div class="col-md-8">
+            <h1>{{ coach.last_name }} {{ coach.first_name }} {{ coach.patronymic }}</h1>
+            <ul class="list-group">
+                <li class="list-group-item">Дата рождения: {{ coach.date_of_birth }}</li>
+                <li class="list-group-item">Карьера: {{ career.team.name }}</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
