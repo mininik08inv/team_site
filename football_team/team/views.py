@@ -2,9 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum, Q
 from datetime import datetime, timezone
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
-from .forms import MatchFilterForm
 from .models import Team, Player, Coach, Match, Achievement
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -84,7 +83,10 @@ def achievement_detail(request, pk):
 
 
 def player_detail(request, player_id):
-    player = get_object_or_404(Player, id=player_id)
+    player = get_object_or_404(
+        Player.objects.prefetch_related('goal_set__match'),
+        id=player_id
+    )
     main_photo = player.main_photo  # Основное фото игрока
     additional_photos = player.additional_photos.all()  # Дополнительные фото
     additional_videos = player.additional_videos.all()  # Видео игрока
@@ -229,8 +231,6 @@ def match_detail(request, match_id):
                   {'match': match, 'title': match.first_team + '-' + match.second_team, })
 
 
-from django.db.models import Sum, Q
-from datetime import datetime
 
 
 def top_scorers(request):
