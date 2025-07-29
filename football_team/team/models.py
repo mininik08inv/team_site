@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
+from django.core.cache import cache
 
 
 class Team(models.Model):
@@ -112,6 +113,7 @@ class Player(models.Model):
         if self.in_the_team == 'NO':
             self.number = None
         super().save(*args, **kwargs)
+        cache.delete(f"player_detail_{self.id}")
 
 
 class Photo(models.Model):
@@ -159,6 +161,10 @@ class Coach(models.Model):
     def __str__(self):
         return f'{self.last_name} {self.first_name} {self.patronymic}'
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(f"player_detail_{self.id}")
+
 
 # -------------------matches----------------------------------
 
@@ -204,6 +210,10 @@ class Match(models.Model):
 
     def get_absolute_url(self):
         return reverse('match_detail', kwargs={'match_id': self.pk})
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(f"match_detail_{self.id}")
 
 
 class Goal(models.Model):
