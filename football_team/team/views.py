@@ -1,6 +1,8 @@
 from django.db.models.functions import Lower
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum, Q
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 from datetime import datetime, timezone
 
 from django.views.generic import ListView
@@ -83,6 +85,11 @@ def achievement_detail(request, pk):
 
 
 def player_detail(request, player_id):
+    cache_key = f'player_detail_{player_id}'
+    cached_response = cache.get(cache_key)
+    if cached_response:
+        return cached_response
+
     player = get_object_or_404(
         Player.objects.prefetch_related('goal_set__match'),
         id=player_id
@@ -91,7 +98,7 @@ def player_detail(request, player_id):
     additional_photos = player.additional_photos.all()  # Дополнительные фото
     additional_videos = player.additional_videos.all()  # Видео игрока
 
-    return render(request, 'team/player_detail.html', {
+    response = render(request, 'team/player_detail.html', {
         'player': player,
         'main_photo': main_photo,
         'additional_photos': additional_photos,
@@ -99,14 +106,27 @@ def player_detail(request, player_id):
         'title': player.last_name,
     })
 
+    cache.set(cache_key, response, 60 * 60 * 24)
+
+    return response
+
 
 def coach_detail(request, coach_id):
+    cache_key = f'coach_detail_{coach_id}'
+    cached_response = cache.get(cache_key)
+    if cached_response:
+        return cached_response
+
     coach = get_object_or_404(Coach, id=coach_id)
 
-    return render(request, 'team/coach_detail.html', {
+    response = render(request, 'team/coach_detail.html', {
         'coach': coach,
         'title': coach.last_name,
     })
+
+    cache.set(cache_key, response, 60 * 60 * 24)
+
+    return response
 
 
 class MatchListView(ListView):
@@ -207,7 +227,6 @@ def match_list(request):
         lower_tournament=Lower('tournament')
     ).values_list('tournament', flat=True).distinct().order_by('lower_tournament')
 
-
     # Пагинация
     paginator = Paginator(matches, 10)  # 10 записей на страницу
     page_number = request.GET.get('page', 1)
@@ -240,9 +259,18 @@ def match_list(request):
 
 
 def match_detail(request, match_id):
+    cache_key = f'match_detail_{match_id}'
+    cached_response = cache.get(cache_key)
+    if cached_response:
+        return cached_response
+
     match = get_object_or_404(Match, pk=match_id)
-    return render(request, 'team/match_detail.html',
+    response = render(request, 'team/match_detail.html',
                   {'match': match, 'title': match.first_team + '-' + match.second_team, })
+
+    cache.set(cache_key, response, 60 * 60 * 24)
+
+    return response
 
 
 def top_scorers(request):

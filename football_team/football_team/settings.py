@@ -141,3 +141,14 @@ if sys.argv[1] == 'runserver':
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/0",  # БД №1
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+        "KEY_PREFIX": "caches_page",  # Префикс ключей (опционально)
+    }
+}
