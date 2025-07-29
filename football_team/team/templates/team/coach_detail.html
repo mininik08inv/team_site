@@ -22,7 +22,10 @@
             <h1>{{ coach.last_name }} {{ coach.first_name }} {{ coach.patronymic }}</h1>
             <ul class="list-group">
                 <li class="list-group-item">Дата рождения: {{ coach.date_of_birth }}</li>
-                <li class="list-group-item">Карьера: {{ career.team.name }}</li>
+                <li class="list-group-item">
+                    <strong>Карьера:</strong><br>
+                    {{ coach.career|linebreaks }}
+                </li>
             </ul>
         </div>
     </div>
